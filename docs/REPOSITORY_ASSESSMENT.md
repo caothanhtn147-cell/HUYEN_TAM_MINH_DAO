@@ -21,9 +21,9 @@ Task HT-001 initialized a clean Git repository in `HUYEN_TAM_MINH_DAO` with the 
 | Inspection Criteria | Finding | Status / Detail |
 | :--- | :--- | :--- |
 | **Dedicated Root** | `HUYEN_TAM_MINH_DAO` | Path: `G:\AI SOFTWARE FACTORY\HUYEN_TAM_MINH_DAO`. |
-| **Git Repository** | Initialized (HT-001) | Git repository initialized; default branch `main`; no commits created yet. |
+| **Git Repository** | Baseline Active | Initialized on `main`; baseline commit `4c0e8fd31f48e2c662c94bf48cb18d8aa8d2b8a8` created. |
 | **Directory Isolation** | Isolated | `sample-desktop-app` is outside the repository boundaries. |
-| **Frontend Stack** | None detected | No `Next.js`, `React`, `Package.json` (at workspace root), `Tailwind`, or `TypeScript`. |
+| **Frontend Stack** | Next.js App Router | Next.js 16.3.0, React 19.2.8, TypeScript 5 (strict mode), Tailwind CSS 4, ESLint 9 in `apps/web`. |
 | **Backend Stack** | None detected | No `FastAPI`, `Python`, `Pydantic`, `SQLAlchemy`, or `Alembic`. |
 | **Database** | None configured | No `docker-compose.yml`, `PostgreSQL`, or `Redis` configurations. |
 | **Authentication** | None | No Supabase, OAuth, or RBAC foundation. |
@@ -65,20 +65,17 @@ To transform this blank workspace into a production-ready system for HUYỀN TÂ
 
 ## 5. IMMEDIATE CONCERNS & RISKS
 
-1. **Baseline Commit Pending**: Git is now initialized on branch `main`. The immediate operational risk is that no baseline commit exists yet. This closeout execution creates the initial baseline commit (`HT-001`) to ensure full rollback capability.
-2. **Accepted Monorepo Boundaries**: The monorepo architecture has been accepted as documented in [ADR-001](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/docs/ARCHITECTURE_DECISIONS.md). Boundaries are defined as:
-   - Frontend boundary: `apps/web`
-   - Backend boundary: `services/api`
-   - Shared packages: `packages/` (`shared-types`, `ui`, `config`)
-3. **Drafting Initial Schema without Migrations**: Schema creation must be backed by Alembic from Task 1 of database setup.
+1. **Baseline Commit Established**: Task `HT-001` is fully closed with initial baseline commit `4c0e8fd31f48e2c662c94bf48cb18d8aa8d2b8a8` on branch `main`.
+2. **Frontend Foundation Initialized**: Task `HT-002` initialized the Next.js App Router framework foundation inside `apps/web`.
+3. **Accepted Monorepo Boundaries**: The monorepo architecture has been accepted as documented in [ADR-001](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/docs/ARCHITECTURE_DECISIONS.md).
+4. **Drafting Initial Schema without Migrations**: Backend and database schema creation must be backed by Alembic from Task 1 of database setup.
 
 ---
 
 ## 6. RECOMMENDED STARTING POINT
 
-Task **HT-001** (Monorepo & Git Repository Foundation Setup) is complete.
+Tasks **HT-001** (Monorepo & Git Repository Foundation Setup) and **HT-002** (Next.js Frontend Package Initialization) are complete.
 
-The next implementation task is **HT-002** (Next.js 14 App Router Framework Initialization).
+The next implementation task is **HT-003** (FastAPI Python Package & Healthcheck Endpoint).
 
-`HT-002` must not begin until the `HT-001` baseline commit is completed and verified.
 

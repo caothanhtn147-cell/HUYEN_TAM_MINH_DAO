@@ -52,9 +52,29 @@ HUYEN_TAM_MINH_DAO/
 
 ## 4. CURRENT DEVELOPMENT STATUS
 
-- **Current Phase:** Phase 1 — Foundation Setup (Task `HT-001` Complete).
-- **Local Development Status:** Repository structure and Git boundaries initialized.
-- **IMPORTANT NOTE:** **No business features, user authentication, payment integrations, database models, or AI providers have been built yet.** Framework packages will be initialized in subsequent tasks (`HT-002`, `HT-003`, etc.).
+- **Current Phase:** Phase 1 — Foundation Setup (Tasks `HT-001` & `HT-002` Complete).
+- **Frontend Engine:** Next.js App Router (`16.3.0`), React (`19.2.8`), TypeScript (`^5`), Tailwind CSS (`^4`), ESLint (`^9`).
+- **Validation Runtime Environment:** Node.js `v20.20.2`, npm `10.8.2`.
+- **IMPORTANT NOTE:** **No backend API, user authentication, payment integrations, database models, or AI providers exist yet.** Business features will be introduced in subsequent single tasks (`HT-003`, `HT-004`, etc.).
+
+---
+
+## 5. FRONTEND DEVELOPMENT & VALIDATION (`apps/web`)
+
+### Local Development
+```powershell
+cd apps/web
+npm install
+npm run dev
+```
+
+### Verification Commands
+```powershell
+cd apps/web
+npm run lint
+npm run typecheck
+npm run build
+```
 
 ---
 
