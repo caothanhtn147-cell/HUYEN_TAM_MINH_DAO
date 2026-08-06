@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: huyentam_postgres
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-huyentam}
+      POSTGRES_USER: ${POSTGRES_USER:-huyentam}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-replace_with_a_strong_local_password}
+    volumes:
+      - huyentam_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-huyentam} -d $${POSTGRES_DB:-huyentam}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - huyentam_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: huyentam_redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - huyentam_redis_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - huyentam_network
+
+networks:
+  huyentam_network:
+    name: huyentam_network
+    driver: bridge
+
+volumes:
+  huyentam_postgres_data:
+    name: huyentam_postgres_data
+  huyentam_redis_data:
+    name: huyentam_redis_data

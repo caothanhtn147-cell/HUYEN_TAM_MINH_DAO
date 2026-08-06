@@ -52,11 +52,12 @@ HUYEN_TAM_MINH_DAO/
 
 ## 4. CURRENT DEVELOPMENT STATUS
 
-- **Current Phase:** Phase 1 — Foundation Setup (Tasks `HT-001`, `HT-002`, & `HT-003` Complete).
+- **Current Phase:** Phase 1 — Foundation Setup (Tasks `HT-001`, `HT-002`, `HT-003`, & `HT-004` Complete).
 - **Frontend Engine:** Next.js App Router (`16.3.0`), React (`19.2.8`), TypeScript (`^5`), Tailwind CSS (`^4`), ESLint (`^9`).
 - **Backend Engine:** FastAPI (`0.141.1`), Python (`3.12.10`), Pydantic v2 (`2.13.4`), Uvicorn (`0.52.1`). Endpoints: `/health`, `/api/v1/health`.
-- **Validation Runtime Environment:** Node.js `v20.20.2`, npm `10.8.2`, Python `3.12.10`.
-- **IMPORTANT NOTE:** **No database connection, user authentication, payment integrations, or AI providers exist yet.** Business features will be introduced in subsequent single tasks (`HT-004`, `HT-005`, etc.).
+- **Local Infrastructure:** Docker Compose (`compose.yaml`) with PostgreSQL 16 (`postgres:16-alpine`) & Redis 7 (`redis:7-alpine`).
+- **Validation Runtime Environment:** Node.js `v20.20.2`, npm `10.8.2`, Python `3.12.10`, Docker `29.6.2`, Docker Compose `v5.3.1`.
+- **IMPORTANT NOTE:** **Database models, Alembic migrations, backend connection code, user authentication, payment integrations, or AI providers do not exist yet.** Business features will be introduced in subsequent single tasks (`HT-005`, `HT-006`, etc.).
 
 ---
 
@@ -99,7 +100,27 @@ python -m mypy app
 
 ---
 
-## 5. DOCUMENTATION INDEX
+## 7. LOCAL INFRASTRUCTURE (`compose.yaml`)
+
+- **PostgreSQL 16:** `postgres:16-alpine` (Port `127.0.0.1:5432`)
+- **Redis 7:** `redis:7-alpine` (Port `127.0.0.1:6379`)
+- **Infrastructure Documentation:** Detailed operations and troubleshooting guide in [`infra/README.md`](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/infra/README.md).
+
+### Basic Infrastructure Commands
+```powershell
+# Start local containers in background
+docker compose up -d
+
+# Check service status and health
+docker compose ps
+
+# Stop containers (preserving data volumes)
+docker compose down
+```
+
+---
+
+## 8. DOCUMENTATION INDEX
 
 All core architecture, product specifications, database schemas, and safety policies are stored in [`docs/`](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/docs):
 
