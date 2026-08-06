@@ -24,12 +24,12 @@ Task HT-001 initialized a clean Git repository in `HUYEN_TAM_MINH_DAO` with the 
 | **Git Repository** | Baseline Active | Initialized on `main`; baseline commit `4c0e8fd31f48e2c662c94bf48cb18d8aa8d2b8a8` created. |
 | **Directory Isolation** | Isolated | `sample-desktop-app` is outside the repository boundaries. |
 | **Frontend Stack** | Next.js App Router | Next.js 16.3.0, React 19.2.8, TypeScript 5 (strict mode), Tailwind CSS 4, ESLint 9 in `apps/web`. |
-| **Backend Stack** | None detected | No `FastAPI`, `Python`, `Pydantic`, `SQLAlchemy`, or `Alembic`. |
+| **Backend Stack** | FastAPI Service | FastAPI 0.141.1, Python 3.12.10, Pydantic v2 (2.13.4), Uvicorn 0.52.1 in `services/api`. Endpoints: `/health`, `/api/v1/health`. |
 | **Database** | None configured | No `docker-compose.yml`, `PostgreSQL`, or `Redis` configurations. |
 | **Authentication** | None | No Supabase, OAuth, or RBAC foundation. |
 | **AI Integration** | None | No provider SDKs, prompt templates, or safety adapter pipelines. |
 | **Security & Secrets** | Clean | No secrets, credentials, or PII discovered in tracked files. |
-| **Build & Test Tools** | None | No test suites (`jest`, `vitest`, `pytest`), linters, or formatters present. |
+| **Build & Test Tools** | Active (Frontend & Backend) | Next.js build, ESLint 9, tsc typecheck (`apps/web`); Pytest 9.1.1, Ruff 0.16.1, mypy 2.3.0 (`services/api`). |
 
 ---
 
@@ -66,16 +66,17 @@ To transform this blank workspace into a production-ready system for HUYỀN TÂ
 ## 5. IMMEDIATE CONCERNS & RISKS
 
 1. **Baseline Commit Established**: Task `HT-001` is fully closed with initial baseline commit `4c0e8fd31f48e2c662c94bf48cb18d8aa8d2b8a8` on branch `main`.
-2. **Frontend Foundation Initialized**: Task `HT-002` initialized the Next.js App Router framework foundation inside `apps/web`.
-3. **Accepted Monorepo Boundaries**: The monorepo architecture has been accepted as documented in [ADR-001](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/docs/ARCHITECTURE_DECISIONS.md).
-4. **Drafting Initial Schema without Migrations**: Backend and database schema creation must be backed by Alembic from Task 1 of database setup.
+2. **Frontend Foundation Initialized**: Task `HT-002` initialized the Next.js App Router framework foundation inside `apps/web` (commit `339d2c68c649412e090b07634c0d75718467117b`).
+3. **Backend Foundation Initialized**: Task `HT-003` initialized the FastAPI Python backend framework foundation inside `services/api` with Pytest, Ruff, mypy, and healthcheck endpoints.
+4. **Accepted Monorepo Boundaries**: The monorepo architecture has been accepted as documented in [ADR-001](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/docs/ARCHITECTURE_DECISIONS.md).
+5. **Drafting Initial Schema without Migrations**: Backend and database schema creation must be backed by Alembic from Task 1 of database setup.
 
 ---
 
 ## 6. RECOMMENDED STARTING POINT
 
-Tasks **HT-001** (Monorepo & Git Repository Foundation Setup) and **HT-002** (Next.js Frontend Package Initialization) are complete.
+Tasks **HT-001** (Monorepo & Git Repository Foundation Setup), **HT-002** (Next.js Frontend Package Initialization), and **HT-003** (FastAPI Python Package & Healthcheck Endpoint) are complete.
 
-The next implementation task is **HT-003** (FastAPI Python Package & Healthcheck Endpoint).
+The next implementation task is **HT-004** (Docker Compose Local Infrastructure Setup).
 
 

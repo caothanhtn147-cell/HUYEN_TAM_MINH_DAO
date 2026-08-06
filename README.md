@@ -52,10 +52,11 @@ HUYEN_TAM_MINH_DAO/
 
 ## 4. CURRENT DEVELOPMENT STATUS
 
-- **Current Phase:** Phase 1 — Foundation Setup (Tasks `HT-001` & `HT-002` Complete).
+- **Current Phase:** Phase 1 — Foundation Setup (Tasks `HT-001`, `HT-002`, & `HT-003` Complete).
 - **Frontend Engine:** Next.js App Router (`16.3.0`), React (`19.2.8`), TypeScript (`^5`), Tailwind CSS (`^4`), ESLint (`^9`).
-- **Validation Runtime Environment:** Node.js `v20.20.2`, npm `10.8.2`.
-- **IMPORTANT NOTE:** **No backend API, user authentication, payment integrations, database models, or AI providers exist yet.** Business features will be introduced in subsequent single tasks (`HT-003`, `HT-004`, etc.).
+- **Backend Engine:** FastAPI (`0.141.1`), Python (`3.12.10`), Pydantic v2 (`2.13.4`), Uvicorn (`0.52.1`). Endpoints: `/health`, `/api/v1/health`.
+- **Validation Runtime Environment:** Node.js `v20.20.2`, npm `10.8.2`, Python `3.12.10`.
+- **IMPORTANT NOTE:** **No database connection, user authentication, payment integrations, or AI providers exist yet.** Business features will be introduced in subsequent single tasks (`HT-004`, `HT-005`, etc.).
 
 ---
 
@@ -74,6 +75,26 @@ cd apps/web
 npm run lint
 npm run typecheck
 npm run build
+```
+
+---
+
+## 6. BACKEND DEVELOPMENT & VALIDATION (`services/api`)
+
+### Local Development
+```powershell
+cd services/api
+.\.venv\Scripts\Activate.ps1
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+### Verification Commands
+```powershell
+cd services/api
+python -m pytest
+python -m ruff check .
+python -m ruff format --check .
+python -m mypy app
 ```
 
 ---
