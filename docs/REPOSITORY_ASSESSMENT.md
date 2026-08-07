@@ -25,11 +25,12 @@ Task HT-001 initialized a clean Git repository in `HUYEN_TAM_MINH_DAO` with the 
 | **Directory Isolation** | Isolated | `sample-desktop-app` is outside the repository boundaries. |
 | **Frontend Stack** | Next.js App Router | Next.js 16.3.0, React 19.2.8, TypeScript 5 (strict mode), Tailwind CSS 4, ESLint 9 in `apps/web`. |
 | **Backend Stack** | FastAPI Service | FastAPI 0.141.1, Python 3.12.10, Pydantic v2 (2.13.4), Uvicorn 0.52.1 in `services/api`. Endpoints: `/health`, `/api/v1/health`. |
-| **Database** | None configured | No `docker-compose.yml`, `PostgreSQL`, or `Redis` configurations. |
+| **Local Infrastructure** | Docker Compose | Docker Compose (`compose.yaml`), PostgreSQL 16 (`postgres:16-alpine`), Redis 7 (`redis:7-alpine`). Localhost-bound (`127.0.0.1`). |
+| **Database Engine** | SQLAlchemy 2.0 & Alembic | SQLAlchemy 2.0.51 async engine, `get_db_session` async_sessionmaker, `Base` DeclarativeBase, Alembic 1.19.0 (`0001_database_foundation`). |
 | **Authentication** | None | No Supabase, OAuth, or RBAC foundation. |
 | **AI Integration** | None | No provider SDKs, prompt templates, or safety adapter pipelines. |
 | **Security & Secrets** | Clean | No secrets, credentials, or PII discovered in tracked files. |
-| **Build & Test Tools** | Active (Frontend & Backend) | Next.js build, ESLint 9, tsc typecheck (`apps/web`); Pytest 9.1.1, Ruff 0.16.1, mypy 2.3.0 (`services/api`). |
+| **Build & Test Tools** | Active (Frontend & Backend) | Next.js build, ESLint 9, tsc typecheck (`apps/web`); Pytest 9.1.1 (7 passed), Ruff 0.16.1, mypy 2.3.0 (`services/api`). |
 
 ---
 
@@ -68,15 +69,15 @@ To transform this blank workspace into a production-ready system for HUYỀN TÂ
 1. **Baseline Commit Established**: Task `HT-001` is fully closed with initial baseline commit `4c0e8fd31f48e2c662c94bf48cb18d8aa8d2b8a8` on branch `main`.
 2. **Frontend Foundation Initialized**: Task `HT-002` initialized the Next.js App Router framework foundation inside `apps/web` (commit `339d2c68c649412e090b07634c0d75718467117b`).
 3. **Backend Foundation Initialized**: Task `HT-003` initialized the FastAPI Python backend framework foundation inside `services/api` with Pytest, Ruff, mypy, and healthcheck endpoints.
-4. **Accepted Monorepo Boundaries**: The monorepo architecture has been accepted as documented in [ADR-001](file:///G:/AI%20SOFTWARE%20FACTORY/HUYEN_TAM_MINH_DAO/docs/ARCHITECTURE_DECISIONS.md).
-5. **Drafting Initial Schema without Migrations**: Backend and database schema creation must be backed by Alembic from Task 1 of database setup.
+4. **Local Infrastructure Configured**: Task `HT-004` established `compose.yaml` for PostgreSQL 16 and Redis 7 containerized local infrastructure (commit `39672c8c89f5abae9c02ec31be86e34604ead5e5`).
+5. **Database Async Engine & Alembic Setup**: Task `HT-005` established SQLAlchemy 2.0 async engine, `get_db_session` sessionmaker dependency, `Base` DeclarativeBase, and initial empty Alembic migration `0001_database_foundation`. PostgreSQL container connectivity and migration upgrade/downgrade cycles were verified. **No business tables exist yet.**
 
 ---
 
 ## 6. RECOMMENDED STARTING POINT
 
-Tasks **HT-001** (Monorepo & Git Repository Foundation Setup), **HT-002** (Next.js Frontend Package Initialization), and **HT-003** (FastAPI Python Package & Healthcheck Endpoint) are complete.
+Tasks **HT-001**, **HT-002**, **HT-003**, **HT-004**, and **HT-005** are complete.
 
-The next implementation task is **HT-004** (Docker Compose Local Infrastructure Setup).
+The next implementation task is **HT-006** (Users and Encrypted Profiles Migration & Models).
 
 

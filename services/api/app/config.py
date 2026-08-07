@@ -12,9 +12,13 @@ class Settings(BaseSettings):
     API_PORT: int = 8000
     API_PREFIX: str = "/api/v1"
     LOG_LEVEL: str = "INFO"
+    DATABASE_URL: str = (
+        "postgresql+asyncpg://huyentam:huyentam_dev_pass_123@127.0.0.1:5432/huyentam"
+    )
+    DB_ECHO: bool = False
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(".env", "../../.env", "../.env"),
         env_file_encoding="utf-8",
         extra="ignore",
     )
