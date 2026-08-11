@@ -48,8 +48,15 @@ python -m alembic downgrade base
 python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-### Run Tests (Includes DB & Health Endpoints)
+### Run Tests
 ```powershell
+# Unit & non-database tests (runs cleanly without Docker or PostgreSQL)
+python -m pytest -m "not integration"
+
+# Database integration tests (requires PostgreSQL container)
+python -m pytest -m integration
+
+# Full test suite (requires PostgreSQL container)
 python -m pytest
 ```
 
@@ -65,6 +72,9 @@ python -m ruff format --check .
 python -m mypy app
 ```
 
+> [!IMPORTANT]
+> **DATABASE CREDENTIAL SECURITY:** `DATABASE_URL` is loaded dynamically from your local environment or `.env` file at runtime. **NEVER hard-code database passwords or live secrets in source code (`config.py`, `env.py`, `alembic.ini`).** The default `DATABASE_URL` in `Settings` contains an invalid placeholder to ensure secrets are never committed.
+
 ---
 
 ## 3. HEALTH ENDPOINTS
@@ -78,4 +88,4 @@ python -m mypy app
 
 ## 4. CURRENT STATUS
 
-Task `HT-005` completed. SQLAlchemy 2.0 async engine, session factory (`get_db_session`), DeclarativeBase foundation (`Base`), and Alembic migration environment (`0001_database_foundation`) are operational. **No business model tables exist yet.** Business schemas (Users, Profiles, Tarots, etc.) will be introduced in subsequent tasks (`HT-006`, etc.).
+Task `HT-005A` completed. Database foundation is hardened: hard-coded credentials removed from source, Alembic URL handling sanitized against special character interpolation (`%`), pytest integration markers established (`@pytest.mark.integration`), and non-integration unit tests run cleanly without Docker dependencies. **No business model tables exist yet.** Business schemas (Users, Profiles, Tarots, etc.) will be introduced in subsequent tasks (`HT-006`, etc.).

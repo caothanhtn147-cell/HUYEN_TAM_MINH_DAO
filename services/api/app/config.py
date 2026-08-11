@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     API_PREFIX: str = "/api/v1"
     LOG_LEVEL: str = "INFO"
     DATABASE_URL: str = (
-        "postgresql+asyncpg://huyentam:huyentam_dev_pass_123@127.0.0.1:5432/huyentam"
+        "postgresql+asyncpg://invalid_user:invalid_password@127.0.0.1:5432/invalid_db"
     )
     DB_ECHO: bool = False
 
