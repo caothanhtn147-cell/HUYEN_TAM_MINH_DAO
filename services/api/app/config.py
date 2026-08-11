@@ -16,6 +16,30 @@ class Settings(BaseSettings):
         "postgresql+asyncpg://invalid_user:invalid_password@127.0.0.1:5432/invalid_db"
     )
     DB_ECHO: bool = False
+    PROFILE_ENCRYPTION_KEY: str = ""
+
+    def get_profile_encryption_key_bytes(self) -> bytes:
+        """Decode and validate 32-byte AES-256 key from PROFILE_ENCRYPTION_KEY."""
+        import base64
+
+        raw_key = self.PROFILE_ENCRYPTION_KEY.strip()
+        if not raw_key:
+            raise ValueError(
+                "PROFILE_ENCRYPTION_KEY is required for sensitive profile operations."
+            )
+        try:
+            decoded = base64.b64decode(raw_key, validate=True)
+        except Exception as err:
+            raise ValueError(
+                "PROFILE_ENCRYPTION_KEY must be a valid Base64-encoded string."
+            ) from err
+
+        if len(decoded) != 32:
+            raise ValueError(
+                "PROFILE_ENCRYPTION_KEY must decode to exactly 32 bytes "
+                f"(got {len(decoded)} bytes)."
+            )
+        return decoded
 
     model_config = SettingsConfigDict(
         env_file=(".env", "../../.env", "../.env"),

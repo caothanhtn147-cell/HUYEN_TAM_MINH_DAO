@@ -13,9 +13,10 @@ from app.db.session import get_db_session
 
 
 def test_base_declarative_metadata() -> None:
-    """Verify that Base is a valid DeclarativeBase with clean metadata."""
+    """Verify that Base is a valid DeclarativeBase with registered domain tables."""
     assert Base.metadata is not None
-    assert len(Base.metadata.tables) == 0
+    assert len(Base.metadata.tables) == 4
+    assert "users" in Base.metadata.tables
 
 
 def test_alembic_special_character_url_handling() -> None:
