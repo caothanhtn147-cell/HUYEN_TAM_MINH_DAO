@@ -1,5 +1,8 @@
 import base64
 import os
+from collections.abc import Generator
+
+import pytest
 
 from app.config import get_settings
 from app.db.base import Base
@@ -9,10 +12,15 @@ TEST_KEY_BYTES: bytes = os.urandom(32)
 TEST_KEY_B64: str = base64.b64encode(TEST_KEY_BYTES).decode("utf-8")
 
 
-def setup_function() -> None:
+@pytest.fixture(autouse=True)
+def setup_models_test_key() -> Generator[None, None, None]:
     get_settings.cache_clear()
     settings = get_settings()
     settings.PROFILE_ENCRYPTION_KEY = TEST_KEY_B64
+    try:
+        yield
+    finally:
+        get_settings.cache_clear()
 
 
 def test_base_metadata_contains_ht006_tables() -> None:
@@ -61,9 +69,11 @@ def test_user_profile_helper_methods() -> None:
     assert profile.get_birth_location(key=TEST_KEY_BYTES) == "Thành phố Hà Nội"
 
 
-def test_model_relationships_defined() -> None:
-    """Verify SQLAlchemy ORM relationship mappers are defined correctly."""
-    user = User(email="test@example.com")
+def test_model_relationships_and_email_normalization() -> None:
+    """Verify ORM relationships and User.email automatic normalization."""
+    user = User(email="  Test.User@Example.COM  ")
+    assert user.email == "test.user@example.com"
+
     role = Role(name="USER")
     profile = UserProfile(full_name="Nguyễn Văn A")
 

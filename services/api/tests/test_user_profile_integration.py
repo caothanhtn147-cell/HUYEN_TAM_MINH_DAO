@@ -1,5 +1,6 @@
 import base64
 import os
+from collections.abc import Generator
 
 import pytest
 from sqlalchemy import select, text
@@ -19,10 +20,14 @@ TEST_KEY_B64: str = base64.b64encode(TEST_KEY_BYTES).decode("utf-8")
 
 
 @pytest.fixture(autouse=True)
-def setup_integration_encryption_key() -> None:
+def setup_integration_encryption_key() -> Generator[None, None, None]:
     get_settings.cache_clear()
     settings = get_settings()
     settings.PROFILE_ENCRYPTION_KEY = TEST_KEY_B64
+    try:
+        yield
+    finally:
+        get_settings.cache_clear()
 
 
 @pytest.mark.integration
@@ -149,6 +154,42 @@ async def test_unique_user_email_constraint() -> None:
             session.add(u2)
 
             with pytest.raises(IntegrityError):
+                await session.commit()
+
+            await session.rollback()
+            await session.delete(u1)
+            await session.commit()
+    finally:
+        await engine.dispose()
+
+
+@pytest.mark.integration
+@pytest.mark.asyncio
+async def test_case_insensitive_email_uniqueness_constraint() -> None:
+    """Verify lower(email) uniqueness constraint in PostgreSQL."""
+    settings = get_settings()
+    engine = create_async_engine(settings.DATABASE_URL, poolclass=NullPool)
+    session_factory = async_sessionmaker(
+        bind=engine, class_=AsyncSession, expire_on_commit=False
+    )
+
+    try:
+        async with session_factory() as session:
+            u1 = User(email="Case.Sensitive@Example.com")
+            session.add(u1)
+            await session.commit()
+
+            assert u1.email == "case.sensitive@example.com"
+
+            # Attempt inserting raw un-normalized SQL string directly
+            with pytest.raises(IntegrityError):
+                await session.execute(
+                    text(
+                        "INSERT INTO users (id, email, is_active, is_verified, "
+                        "created_at, updated_at) VALUES (gen_random_uuid(), "
+                        "'CASE.SENSITIVE@EXAMPLE.COM', true, false, now(), now())"
+                    )
+                )
                 await session.commit()
 
             await session.rollback()

@@ -3,19 +3,27 @@ from __future__ import annotations
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import Boolean, DateTime, String
+from sqlalchemy import Boolean, DateTime, Index, String, func
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
 
 from app.db.base import Base
 from app.models.user_profile import UserProfile
 from app.models.user_role import Role
+from app.security.identity import normalize_email
 
 
 class User(Base):
     """Core User entity representing account identity and state."""
 
     __tablename__ = "users"
+    __table_args__ = (
+        Index(
+            "ix_users_email_lower",
+            func.lower(mapped_column("email", String(255))),
+            unique=True,
+        ),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
@@ -24,9 +32,7 @@ class User(Base):
     )
     email: Mapped[str] = mapped_column(
         String(255),
-        unique=True,
         nullable=False,
-        index=True,
     )
     is_active: Mapped[bool] = mapped_column(
         Boolean,
@@ -63,3 +69,7 @@ class User(Base):
         secondary="user_roles",
         back_populates="users",
     )
+
+    @validates("email")
+    def _validate_email(self, key: str, address: str) -> str:
+        return normalize_email(address)

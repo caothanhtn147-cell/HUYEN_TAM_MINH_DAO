@@ -19,7 +19,8 @@ def test_base_declarative_metadata() -> None:
     assert "users" in Base.metadata.tables
 
 
-def test_alembic_special_character_url_handling() -> None:
+@pytest.mark.asyncio
+async def test_alembic_special_character_url_handling() -> None:
     """Verify special characters (e.g. '%') in DATABASE_URL do not fail parsing."""
     synthetic_url = (
         "postgresql+asyncpg://huyentam_user:p%25ssword%40secret@127.0.0.1:5432/huyentam"
@@ -30,7 +31,10 @@ def test_alembic_special_character_url_handling() -> None:
 
     # Ensure engine initialization succeeds without ConfigParser interpolation errors
     test_engine = create_async_engine(synthetic_url, poolclass=NullPool)
-    assert test_engine.url.drivername == "postgresql+asyncpg"
+    try:
+        assert test_engine.url.drivername == "postgresql+asyncpg"
+    finally:
+        await test_engine.dispose()
 
 
 def test_settings_cache_clear() -> None:

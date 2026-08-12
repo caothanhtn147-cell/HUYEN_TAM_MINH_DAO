@@ -21,8 +21,19 @@ def _resolve_key(key: bytes | None) -> bytes:
     return get_settings().get_profile_encryption_key_bytes()
 
 
+def _resolve_associated_data(context: str | bytes | None) -> bytes:
+    """Combine envelope version byte with field context bytes for AEAD authentication."""
+    if context is None:
+        return ENCRYPTION_VERSION_V1
+    context_bytes = context.encode("utf-8") if isinstance(context, str) else context
+    return ENCRYPTION_VERSION_V1 + context_bytes
+
+
 def encrypt_sensitive_value(
-    value: str | None, key: bytes | None = None
+    value: str | None,
+    *,
+    context: str | bytes | None = None,
+    key: bytes | None = None,
 ) -> bytes | None:
     """Encrypt plaintext string into AES-256-GCM authenticated ciphertext envelope.
 
@@ -35,18 +46,22 @@ def encrypt_sensitive_value(
         return None
 
     key_bytes = _resolve_key(key)
+    associated_data = _resolve_associated_data(context)
     aesgcm = AESGCM(key_bytes)
     nonce = os.urandom(NONCE_SIZE_BYTES)
     plaintext_bytes = value.encode("utf-8")
 
     ciphertext_with_tag = aesgcm.encrypt(
-        nonce, plaintext_bytes, associated_data=ENCRYPTION_VERSION_V1
+        nonce, plaintext_bytes, associated_data=associated_data
     )
     return ENCRYPTION_VERSION_V1 + nonce + ciphertext_with_tag
 
 
 def decrypt_sensitive_value(
-    ciphertext: bytes | None, key: bytes | None = None
+    ciphertext: bytes | None,
+    *,
+    context: str | bytes | None = None,
+    key: bytes | None = None,
 ) -> str | None:
     """Decrypt authenticated AES-256-GCM ciphertext envelope to plaintext string."""
     if ciphertext is None:
@@ -60,16 +75,18 @@ def decrypt_sensitive_value(
         raise ValueError(f"Unsupported encryption envelope version: {version!r}.")
 
     key_bytes = _resolve_key(key)
+    associated_data = _resolve_associated_data(context)
     nonce = ciphertext[1 : 1 + NONCE_SIZE_BYTES]
     encrypted_data = ciphertext[1 + NONCE_SIZE_BYTES :]
     aesgcm = AESGCM(key_bytes)
 
     try:
         decrypted_bytes = aesgcm.decrypt(
-            nonce, encrypted_data, associated_data=ENCRYPTION_VERSION_V1
+            nonce, encrypted_data, associated_data=associated_data
         )
         return decrypted_bytes.decode("utf-8")
     except InvalidTag as err:
         raise ValueError(
-            "Ciphertext authentication failed (data tampered or wrong key)."
+            "Ciphertext authentication failed "
+            "(data tampered, wrong key, or mismatched context)."
         ) from err
