@@ -28,6 +28,17 @@ class TokenResponse(BaseModel):
 
     access_token: str = Field(..., description="JWT Bearer access token")
     token_type: str = Field(default="bearer", description="Token authorization type")
+    refresh_token: str | None = Field(
+        default=None, description="Optional raw refresh token for non-cookie clients"
+    )
+
+
+class RefreshRequest(BaseModel):
+    """Schema for manual refresh token payload when cookies are disabled."""
+
+    refresh_token: str | None = Field(
+        default=None, description="Raw refresh token string"
+    )
 
 
 class UserResponse(BaseModel):

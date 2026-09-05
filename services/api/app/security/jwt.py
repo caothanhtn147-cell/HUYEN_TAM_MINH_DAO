@@ -46,3 +46,50 @@ def decode_access_token(token: str) -> dict[str, str | int]:
         raise ValueError("Token has expired.") from err
     except jwt.PyJWTError as err:
         raise ValueError("Invalid access token.") from err
+
+
+def create_refresh_token(
+    subject: str | uuid.UUID,
+    session_id: str | uuid.UUID,
+    expires_delta: timedelta | None = None,
+) -> str:
+    """Create signed JWT refresh token bound to a session ID."""
+    settings = get_settings()
+    now = datetime.now(UTC)
+
+    if expires_delta is not None:
+        expire = now + expires_delta
+    else:
+        expire = now + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+
+    payload = {
+        "sub": str(subject),
+        "sid": str(session_id),
+        "iat": int(now.timestamp()),
+        "exp": int(expire.timestamp()),
+        "type": "refresh",
+    }
+
+    return jwt.encode(
+        payload, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM
+    )
+
+
+def decode_refresh_token(token: str) -> dict[str, str | int]:
+    """Decode and verify signed JWT refresh token."""
+    settings = get_settings()
+    try:
+        payload = jwt.decode(
+            token,
+            settings.JWT_SECRET_KEY,
+            algorithms=[settings.JWT_ALGORITHM],
+        )
+        if payload.get("type") != "refresh":
+            raise ValueError("Invalid token type claim.")
+        if "sid" not in payload:
+            raise ValueError("Missing session ID claim.")
+        return payload
+    except jwt.ExpiredSignatureError as err:
+        raise ValueError("Refresh token has expired.") from err
+    except jwt.PyJWTError as err:
+        raise ValueError("Invalid refresh token.") from err

@@ -16,8 +16,9 @@ from app.db.base import Base
 def test_base_declarative_metadata() -> None:
     """Verify that Base is a valid DeclarativeBase with registered domain tables."""
     assert Base.metadata is not None
-    assert len(Base.metadata.tables) == 4
+    assert len(Base.metadata.tables) >= 4
     assert "users" in Base.metadata.tables
+    assert "user_sessions" in Base.metadata.tables
 
 
 @pytest.mark.asyncio

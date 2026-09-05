@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import uuid
 from datetime import UTC, datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, DateTime, Index, String, func
 from sqlalchemy.dialects.postgresql import UUID
@@ -11,6 +12,9 @@ from app.db.base import Base
 from app.models.user_profile import UserProfile
 from app.models.user_role import Role
 from app.security.identity import normalize_email
+
+if TYPE_CHECKING:
+    from app.models.user_session import UserSession
 
 
 class User(Base):
@@ -73,6 +77,11 @@ class User(Base):
         "Role",
         secondary="user_roles",
         back_populates="users",
+    )
+    sessions: Mapped[list[UserSession]] = relationship(
+        "UserSession",
+        back_populates="user",
+        cascade="all, delete-orphan",
     )
 
     @validates("email")

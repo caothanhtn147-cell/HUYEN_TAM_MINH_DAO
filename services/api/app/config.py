@@ -19,7 +19,9 @@ class Settings(BaseSettings):
     PROFILE_ENCRYPTION_KEY: str = ""
     JWT_SECRET_KEY: str = "htmd_dev_secret_key_change_in_production_32_bytes_min!"
     JWT_ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    REFRESH_TOKEN_COOKIE_NAME: str = "htmd_refresh_token"
 
     def get_profile_encryption_key_bytes(self) -> bytes:
         """Decode and validate 32-byte AES-256 key from PROFILE_ENCRYPTION_KEY."""
