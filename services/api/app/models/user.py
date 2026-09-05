@@ -14,7 +14,9 @@ from app.models.user_role import Role
 from app.security.identity import normalize_email
 
 if TYPE_CHECKING:
+    from app.models.ledger import CreditLedger
     from app.models.user_session import UserSession
+    from app.models.wallet import Wallet
 
 
 class User(Base):
@@ -80,6 +82,17 @@ class User(Base):
     )
     sessions: Mapped[list[UserSession]] = relationship(
         "UserSession",
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+    wallet: Mapped[Wallet | None] = relationship(
+        "Wallet",
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+    credit_ledger_entries: Mapped[list[CreditLedger]] = relationship(
+        "CreditLedger",
         back_populates="user",
         cascade="all, delete-orphan",
     )
