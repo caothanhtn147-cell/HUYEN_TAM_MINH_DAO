@@ -43,7 +43,7 @@ async def test_user_role_profile_persistence_lifecycle() -> None:
     try:
         async with session_factory() as session:
             # 1. Create Role
-            role = Role(name="USER", description="Standard User")
+            role = Role(name="USER_HT006_TEST", description="Standard User")
             session.add(role)
             await session.commit()
 
@@ -80,7 +80,7 @@ async def test_user_role_profile_persistence_lifecycle() -> None:
                 == "Thành phố Đà Nẵng"
             )
             assert len(fetched_user.roles) == 1
-            assert fetched_user.roles[0].name == "USER"
+            assert fetched_user.roles[0].name == "USER_HT006_TEST"
 
             # Cleanup
             await session.delete(fetched_user)

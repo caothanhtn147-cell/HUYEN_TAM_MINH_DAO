@@ -34,6 +34,11 @@ class User(Base):
         String(255),
         nullable=False,
     )
+    hashed_password: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+        default="",
+    )
     is_active: Mapped[bool] = mapped_column(
         Boolean,
         nullable=False,

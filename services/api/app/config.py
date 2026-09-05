@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     )
     DB_ECHO: bool = False
     PROFILE_ENCRYPTION_KEY: str = ""
+    JWT_SECRET_KEY: str = "htmd_dev_secret_key_change_in_production_32_bytes_min!"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
 
     def get_profile_encryption_key_bytes(self) -> bytes:
         """Decode and validate 32-byte AES-256 key from PROFILE_ENCRYPTION_KEY."""

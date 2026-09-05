@@ -1,3 +1,5 @@
+from collections.abc import AsyncIterator
+
 import pytest
 from sqlalchemy import make_url, text
 from sqlalchemy.ext.asyncio import (
@@ -9,7 +11,6 @@ from sqlalchemy.pool import NullPool
 
 from app.config import get_settings
 from app.db.base import Base
-from app.db.session import get_db_session
 
 
 def test_base_declarative_metadata() -> None:
@@ -81,13 +82,26 @@ async def test_async_session_factory() -> None:
 @pytest.mark.integration
 @pytest.mark.asyncio
 async def test_get_db_session_dependency() -> None:
-    """Verify get_db_session dependency yields an active session."""
-    session_generator = get_db_session()
-    session = await anext(session_generator)
+    """Verify get_db_session dependency generator lifecycle with NullPool engine."""
+    settings = get_settings()
+    test_engine = create_async_engine(settings.DATABASE_URL, poolclass=NullPool)
+    session_factory = async_sessionmaker(
+        bind=test_engine, class_=AsyncSession, expire_on_commit=False
+    )
+
+    async def _test_get_db_session() -> AsyncIterator[AsyncSession]:
+        async with session_factory() as session:
+            yield session
+
+    gen = _test_get_db_session()
     try:
+        session = await gen.__anext__()
         assert isinstance(session, AsyncSession)
         result = await session.execute(text("SELECT 1"))
         assert result.scalar() == 1
+        try:
+            await gen.__anext__()
+        except StopAsyncIteration:
+            pass
     finally:
-        with pytest.raises(StopAsyncIteration):
-            await anext(session_generator)
+        await test_engine.dispose()

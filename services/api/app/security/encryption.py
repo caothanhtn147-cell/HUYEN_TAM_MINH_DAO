@@ -22,7 +22,7 @@ def _resolve_key(key: bytes | None) -> bytes:
 
 
 def _resolve_associated_data(context: str | bytes | None) -> bytes:
-    """Combine envelope version byte with field context bytes for AEAD authentication."""
+    """Combine version byte with field context bytes for AEAD authentication."""
     if context is None:
         return ENCRYPTION_VERSION_V1
     context_bytes = context.encode("utf-8") if isinstance(context, str) else context
