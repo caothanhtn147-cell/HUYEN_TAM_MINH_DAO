@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     REFRESH_TOKEN_COOKIE_NAME: str = "htmd_refresh_token"
+    OPENAI_API_KEY: str = ""
+    ANTHROPIC_API_KEY: str = ""
+    GEMINI_API_KEY: str = ""
 
     def get_profile_encryption_key_bytes(self) -> bytes:
         """Decode and validate 32-byte AES-256 key from PROFILE_ENCRYPTION_KEY."""

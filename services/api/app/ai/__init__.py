@@ -1,3 +1,4 @@
+from app.ai.anthropic_adapter import AnthropicAdapter
 from app.ai.base import BaseAIProvider
 from app.ai.crisis_detector import (
     CrisisCategory,
@@ -5,7 +6,10 @@ from app.ai.crisis_detector import (
     HotlineContact,
     detect_crisis,
 )
+from app.ai.gemini_adapter import GeminiAdapter
 from app.ai.mock_provider import MockAIProvider
+from app.ai.openai_adapter import OpenAIAdapter
+from app.ai.router import AIRouter
 from app.ai.safety_reviewer import (
     BoundaryViolationType,
     DualPassSafetyEngine,
@@ -24,6 +28,10 @@ from app.ai.schemas import (
 __all__ = [
     "BaseAIProvider",
     "MockAIProvider",
+    "OpenAIAdapter",
+    "AnthropicAdapter",
+    "GeminiAdapter",
+    "AIRouter",
     "AIMessage",
     "AICompletionRequest",
     "AICompletionResponse",
