@@ -1,3 +1,4 @@
+from app.models.iching import IChingHexagram
 from app.models.ledger import CreditLedger, TransactionType
 from app.models.tarot import TarotCard
 from app.models.user import User
@@ -16,4 +17,5 @@ __all__ = [
     "CreditLedger",
     "TransactionType",
     "TarotCard",
+    "IChingHexagram",
 ]

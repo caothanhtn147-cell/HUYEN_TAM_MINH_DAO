@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.api.v1.auth import router as auth_router
 from app.api.v1.health import router as health_router
+from app.api.v1.iching import router as iching_router
 from app.api.v1.payments import router as payments_router
 from app.api.v1.sessions import router as sessions_router
 from app.api.v1.tarot import router as tarot_router
@@ -31,6 +32,7 @@ def create_app() -> FastAPI:
     app.include_router(payments_router)
     app.include_router(sessions_router)
     app.include_router(tarot_router)
+    app.include_router(iching_router)
 
     return app
 
