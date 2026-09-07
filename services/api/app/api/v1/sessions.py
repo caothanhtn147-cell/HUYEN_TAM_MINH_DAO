@@ -70,8 +70,6 @@ async def stream_minh_kien_session(
 ) -> StreamingResponse:
     """Stream token chunks for Minh Kiến consultation session via SSE."""
     return StreamingResponse(
-        stream_minh_kien_consultation(
-            db=db, user_id=current_user.id, request=request
-        ),
+        stream_minh_kien_consultation(db=db, user_id=current_user.id, request=request),
         media_type="text/event-stream",
     )
