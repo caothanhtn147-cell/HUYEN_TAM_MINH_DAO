@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.api.v1.admin import router as admin_router
 from app.api.v1.astrology import router as astrology_router
 from app.api.v1.auth import router as auth_router
 from app.api.v1.duong_dao import router as duong_dao_router
@@ -39,6 +40,7 @@ def create_app() -> FastAPI:
     app.include_router(astrology_router)
     app.include_router(duong_dao_router)
     app.include_router(journal_router)
+    app.include_router(admin_router)
 
     return app
 

@@ -286,9 +286,7 @@ TAROT_SEED_CATALOG: list[dict[str, Any]] = [
             "Biểu thị sự bừng sáng của trí tuệ khi cắt đứt những ngộ nhận. "
             "Nhìn nhận sự việc bằng góc nhìn trung lập và khách quan."
         ),
-        "reversed_meaning_vi": (
-            "Cảnh báo sự suy nghĩ quá nhiều làm lu mờ sự thật."
-        ),
+        "reversed_meaning_vi": ("Cảnh báo sự suy nghĩ quá nhiều làm lu mờ sự thật."),
         "wisdom_reflection_vi": (
             "Suy đoán nào đang làm bạn bối rối mà thiếu bằng chứng thực tế?"
         ),

@@ -1,8 +1,9 @@
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
+
 from app.models.reflection_journal import ReflectionJournalEntry
 from app.schemas.reflection_journal import JournalEntryCreate, JournalEntryUpdate
 from app.services.reflection_service import (
@@ -10,7 +11,6 @@ from app.services.reflection_service import (
     delete_journal_entry,
     get_journal_entry_by_id,
     get_user_consultation_history,
-    get_user_journal_entries,
     update_journal_entry,
 )
 
@@ -72,7 +72,7 @@ async def test_user_consultation_history_mapping() -> None:
         source_module="tarot",
         source_reference_id="draw-999",
         insights=["hiểu mình"],
-        created_at=datetime.now(timezone.utc),
+        created_at=datetime.now(UTC),
     )
 
     mock_result = MagicMock()

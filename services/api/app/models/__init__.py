@@ -1,4 +1,5 @@
 from app.models.astrology import AstrologyReadingRecord
+from app.models.audit_log import SystemAuditLog
 from app.models.duong_dao import DuongDaoArticle
 from app.models.iching import IChingHexagram
 from app.models.ledger import CreditLedger, TransactionType
@@ -24,4 +25,5 @@ __all__ = [
     "AstrologyReadingRecord",
     "DuongDaoArticle",
     "ReflectionJournalEntry",
+    "SystemAuditLog",
 ]

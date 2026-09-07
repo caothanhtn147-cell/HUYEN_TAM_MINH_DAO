@@ -55,6 +55,12 @@ export default function Home() {
             >
               📊 Dashboard & Nhật Ký
             </a>
+            <a
+              href="/admin"
+              className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-xs font-bold text-rose-300 hover:bg-rose-500/20 transition"
+            >
+              🛡️ Admin Governance
+            </a>
           </div>
           <p className="text-slate-500 text-[11px]">
             Tất cả nội dung tư vấn tâm linh và lối sống được định hướng bằng triết học tự quan sát & minh bạch rõ ràng.
