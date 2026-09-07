@@ -5,6 +5,7 @@ import { useTarotDraw } from '@/hooks/useTarotDraw';
 import { SpreadType } from '@/types/tarot';
 import { TarotCardView } from './TarotCardView';
 import { SocialShareCard } from '../common/SocialShareCard';
+import { UserFeedbackModal } from '../common/UserFeedbackModal';
 
 const SAMPLE_INTENTIONS = [
   'Thông điệp soi chiếu tâm lý cho tôi trong ngày hôm nay.',
@@ -166,19 +167,22 @@ export const TarotSpreadView: React.FC = () => {
               )}
             </div>
 
-            <SocialShareCard
-              moduleName="TAROT SOI CHIẾU"
-              title={drawData.cards[0]?.name_vi || 'Trải Bài Tarot'}
-              subtitle={
-                drawData.intention
-                  ? `Tâm nguyện: "${drawData.intention}"`
-                  : `Trải bài ${drawData.cards.length} lá nhận thức`
-              }
-              insights={drawData.cards.map(
-                (c) =>
-                  `${c.name_vi} (${c.orientation === 'reversed' ? 'Bài Ngược' : 'Bài Xuôi'}): ${c.meaning_vi.slice(0, 80)}...`
-              )}
-            />
+            <div className="flex flex-wrap items-center gap-3">
+              <UserFeedbackModal moduleName="tarot" />
+              <SocialShareCard
+                moduleName="TAROT SOI CHIẾU"
+                title={drawData.cards[0]?.name_vi || 'Trải Bài Tarot'}
+                subtitle={
+                  drawData.intention
+                    ? `Tâm nguyện: "${drawData.intention}"`
+                    : `Trải bài ${drawData.cards.length} lá nhận thức`
+                }
+                insights={drawData.cards.map(
+                  (c) =>
+                    `${c.name_vi} (${c.orientation === 'reversed' ? 'Bài Ngược' : 'Bài Xuôi'}): ${c.meaning_vi.slice(0, 80)}...`
+                )}
+              />
+            </div>
           </div>
 
           {/* Cards Grid Layout */}

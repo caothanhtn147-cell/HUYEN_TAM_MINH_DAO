@@ -6,6 +6,7 @@ import { IChingLineView } from './IChingLineView';
 import { IChingHexagramCardView } from './IChingHexagramCardView';
 import { CoinTossLine } from '@/types/iching';
 import { SocialShareCard } from '../common/SocialShareCard';
+import { UserFeedbackModal } from '../common/UserFeedbackModal';
 
 const SAMPLE_INTENTIONS = [
   'Hướng đi sáng suốt và điềm tĩnh cho sự nghiệp hiện tại.',
@@ -279,19 +280,22 @@ export const IChingCoinTossView: React.FC = () => {
               )}
             </div>
 
-            <SocialShareCard
-              moduleName="QUẺ KINH DỊCH"
-              title={tossData.primary_hexagram.name_vi}
-              subtitle={
-                tossData.transformed_hexagram
-                  ? `Biến Quẻ: ${tossData.transformed_hexagram.name_vi}`
-                  : 'Quẻ Thuần (Không Hào Động)'
-              }
-              insights={[
-                `Lời quẻ: ${tossData.primary_hexagram.judgement_vi.slice(0, 90)}...`,
-                `Chiêm nghiệm: ${tossData.primary_hexagram.wisdom_reflection_vi.slice(0, 90)}...`,
-              ]}
-            />
+            <div className="flex flex-wrap items-center gap-3">
+              <UserFeedbackModal moduleName="iching" />
+              <SocialShareCard
+                moduleName="QUẺ KINH DỊCH"
+                title={tossData.primary_hexagram.name_vi}
+                subtitle={
+                  tossData.transformed_hexagram
+                    ? `Biến Quẻ: ${tossData.transformed_hexagram.name_vi}`
+                    : 'Quẻ Thuần (Không Hào Động)'
+                }
+                insights={[
+                  `Lời quẻ: ${tossData.primary_hexagram.judgement_vi.slice(0, 90)}...`,
+                  `Chiêm nghiệm: ${tossData.primary_hexagram.wisdom_reflection_vi.slice(0, 90)}...`,
+                ]}
+              />
+            </div>
           </div>
 
           {/* Hexagram Cards Grid / Stack */}
