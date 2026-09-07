@@ -4,7 +4,6 @@ import { useState, useCallback } from 'react';
 import {
   MinhKienConsultationResponse,
   StreamStatus,
-  TenPointCompassionateCandor,
 } from '@/types/consultation';
 
 interface UseMinhKienStreamReturn {
