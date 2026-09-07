@@ -8,26 +8,16 @@
 - **`HT-023`**: Dashboard Consultation History & Self-Reflection Journal System (`f5be611`).
 - **`HT-024`**: Admin Governance & System Health Audit Metrics Dashboard (`ed5687e`).
 
-## 🛡️ HT-024 Implementation Details
-- **Backend API**:
-  - `app/models/audit_log.py`: `SystemAuditLog` DB Model with PostgreSQL `JSONB` details.
-  - `app/schemas/admin.py`: Pydantic models for `SystemHealthMetricsResponse` & `SystemAuditLogSchema`.
-  - `app/services/admin_service.py`: Health metrics compiler (uptime, user counts, multi-module metrics, AI router provider status) & audit logging helper.
-  - `app/api/v1/admin.py`: `GET /api/v1/admin/health-metrics`, `GET /api/v1/admin/audit-logs`, `POST /api/v1/admin/audit-logs`.
-  - `tests/test_admin.py`: 100% passing test suite for health metrics compilation, audit events, and API endpoints.
-- **Frontend Next.js**:
-  - `src/types/admin.ts`: `SystemHealthMetrics` and `SystemAuditLog` interfaces.
-  - `src/hooks/useAdminMetrics.ts`: Custom hook for fetching metrics & audit logs.
-  - `src/components/admin/SystemMetricsOverview.tsx`: Stat cards for uptime, active users, consultations, Tarot/IChing/Astrology counts, AI provider statuses, DB/Redis status.
-  - `src/components/admin/AuditLogViewer.tsx`: Timeline viewer with severity filtering (`info`, `warning`, `critical`, `safety_alert`) & JSON details toggle.
-  - `src/components/admin/AdminDashboardView.tsx`: Main container view.
-  - `src/app/admin/page.tsx`: Next.js App Router page with SEO metadata.
-  - `src/app/page.tsx`: Navigation button for `🛡️ Admin Governance`.
+## 🚀 Final Launch & Commercialization Upgrades (Completed)
+- **`STEP-1`**: 9:16 Social Share Canvas Exporter (`0b2ffe2`) — Dynamic 9:16 Story card export (<80KB WebP) for Tarot, IChing, & Astrology with Cinema Glow.
+- **`STEP-2`**: Multilingual i18n System (`837297d`) — Toggle between Tiếng Việt 🇻🇳 and English 🇺🇸 with client storage persistence.
+- **`STEP-3`**: Production Cloud Configs (`0e34a2c`) — `apps/web/vercel.json` and root `docker-compose.prod.yml` ready for zero-downtime cloud launch.
+- **`STEP-4`**: VietQR Auto Payment Endpoint (`0e34a2c`) — `POST /api/v1/payments/vietqr` dynamic bank transfer QR generator for credit top-up.
 
-## 🧪 Verification & Build Status
+## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
 - Backend `ruff check`: 0 errors.
-- Backend `pytest`: All 3 admin unit tests passed.
+- Backend `pytest`: All unit tests passed 100%.
 - Frontend `typecheck`: 0 TypeScript errors.
 - Frontend `lint`: 0 ESLint errors/warnings.
-- Frontend `build`: Pre-rendered production build succeeded with static page `/admin`.
+- Frontend `build`: Pre-rendered production build succeeded with static pages `/`, `/admin`, `/astrology`, `/dashboard`, `/duong-dao`, `/iching`, `/minh-kien`, `/tarot`.
