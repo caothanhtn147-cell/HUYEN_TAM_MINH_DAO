@@ -70,9 +70,7 @@ class AIRouter:
 
             provider = self._providers[provider_name]
             try:
-                logger.info(
-                    f"Attempting completion via provider '{provider_name}'"
-                )
+                logger.info(f"Attempting completion via provider '{provider_name}'")
                 response = await provider.generate_completion(request)
                 return response
             except Exception as err:

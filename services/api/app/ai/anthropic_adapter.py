@@ -27,9 +27,7 @@ class AnthropicAdapter(BaseAIProvider):
         http_client: httpx.AsyncClient | None = None,
     ) -> None:
         settings = get_settings()
-        self.api_key = (
-            api_key if api_key is not None else settings.ANTHROPIC_API_KEY
-        )
+        self.api_key = api_key if api_key is not None else settings.ANTHROPIC_API_KEY
         self.default_model = default_model
         self.http_client = http_client
         self.api_url = "https://api.anthropic.com/v1/messages"

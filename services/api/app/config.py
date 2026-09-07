@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str = ""
     ANTHROPIC_API_KEY: str = ""
     GEMINI_API_KEY: str = ""
+    PAYMENT_WEBHOOK_SECRET: str = (
+        "htmd_dev_payment_webhook_secret_key_change_in_production!"
+    )
 
     def get_profile_encryption_key_bytes(self) -> bytes:
         """Decode and validate 32-byte AES-256 key from PROFILE_ENCRYPTION_KEY."""
