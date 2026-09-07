@@ -14,12 +14,32 @@ export default function Home() {
         <p className="text-base italic text-amber-200/90">
           “Thấy rõ sự thật – Hiểu mình – Sống tốt hơn”
         </p>
-        <div className="border-t border-slate-800 pt-6 text-xs leading-relaxed text-slate-400 space-y-2">
+        <div className="border-t border-slate-800 pt-6 text-xs leading-relaxed text-slate-400 space-y-4">
           <p>
-            Nền tảng đang trong giai đoạn khởi tạo kỹ thuật. Các tính năng sản phẩm chưa được kích hoạt.
+            Nền tảng ứng dụng triết học & biểu tượng soi chiếu nhận thức tâm lý.
           </p>
-          <p className="text-slate-500">
-            Tất cả nội dung tư vấn tâm linh và lối sống trong tương lai sẽ được tạo bởi Trí tuệ Nhân tạo (Minh Sư AI) và minh bạch rõ ràng.
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <a
+              href="/minh-kien"
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs font-bold text-amber-300 hover:bg-amber-500/20 transition"
+            >
+              🔮 Consultation Stream (Minh Kiến)
+            </a>
+            <a
+              href="/tarot"
+              className="rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-xs font-bold text-purple-300 hover:bg-purple-500/20 transition"
+            >
+              🃏 Rút Bài Tarot
+            </a>
+            <a
+              href="/iching"
+              className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-300 hover:bg-emerald-500/20 transition"
+            >
+              ☯️ Gieo Quẻ Kinh Dịch
+            </a>
+          </div>
+          <p className="text-slate-500 text-[11px]">
+            Tất cả nội dung tư vấn tâm linh và lối sống được định hướng bằng triết học tự quan sát & minh bạch rõ ràng.
           </p>
         </div>
       </div>
