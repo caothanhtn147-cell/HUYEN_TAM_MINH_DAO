@@ -5,6 +5,7 @@ import { useIChingToss } from '@/hooks/useIChingToss';
 import { IChingLineView } from './IChingLineView';
 import { IChingHexagramCardView } from './IChingHexagramCardView';
 import { CoinTossLine } from '@/types/iching';
+import { SocialShareCard } from '../common/SocialShareCard';
 
 const SAMPLE_INTENTIONS = [
   'Hướng đi sáng suốt và điềm tĩnh cho sự nghiệp hiện tại.',
@@ -266,15 +267,31 @@ export const IChingCoinTossView: React.FC = () => {
       {tossData && (currentStep === 6 || !interactiveMode) && (
         <div className="space-y-6">
           {/* Section Header */}
-          <div className="text-center py-2 space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-              ☯️ Kết Quả Quẻ Kinh Dịch Soi Chiếu
-            </span>
-            {tossData.intention && (
-              <p className="text-xs text-slate-300 italic">
-                Ý nguyện: &quot;{tossData.intention}&quot;
-              </p>
-            )}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <div className="text-left space-y-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                ☯️ Kết Quả Quẻ Kinh Dịch Soi Chiếu
+              </span>
+              {tossData.intention && (
+                <p className="text-xs text-slate-300 italic">
+                  Ý nguyện: &quot;{tossData.intention}&quot;
+                </p>
+              )}
+            </div>
+
+            <SocialShareCard
+              moduleName="QUẺ KINH DỊCH"
+              title={tossData.primary_hexagram.name_vi}
+              subtitle={
+                tossData.transformed_hexagram
+                  ? `Biến Quẻ: ${tossData.transformed_hexagram.name_vi}`
+                  : 'Quẻ Thuần (Không Hào Động)'
+              }
+              insights={[
+                `Lời quẻ: ${tossData.primary_hexagram.judgement_vi.slice(0, 90)}...`,
+                `Chiêm nghiệm: ${tossData.primary_hexagram.wisdom_reflection_vi.slice(0, 90)}...`,
+              ]}
+            />
           </div>
 
           {/* Hexagram Cards Grid / Stack */}

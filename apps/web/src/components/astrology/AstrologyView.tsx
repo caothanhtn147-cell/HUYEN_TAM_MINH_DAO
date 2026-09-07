@@ -6,6 +6,7 @@ import { BirthDataForm } from './BirthDataForm';
 import { BaTuChartView } from './BaTuChartView';
 import { TuViPalaceView } from './TuViPalaceView';
 import { BirthDataInput } from '@/types/astrology';
+import { SocialShareCard } from '../common/SocialShareCard';
 
 export const AstrologyView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'batu' | 'tuvi' | 'synthesis'>(
@@ -78,12 +79,24 @@ export const AstrologyView: React.FC = () => {
             </button>
           </div>
 
-          {/* Reset Action */}
-          <div className="flex justify-end">
+          {/* Reset Action & Share */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <SocialShareCard
+              moduleName="LÁ SỐ BÁT TỰ & TỬ VI"
+              title={batuChart.birth_data?.name || 'Lá Số Soi Chiếu'}
+              subtitle={`Tứ Trụ: ${batuChart.year_pillar.combined_name} • ${batuChart.month_pillar.combined_name} • ${batuChart.day_pillar.combined_name} • ${batuChart.hour_pillar.combined_name}`}
+              insights={[
+                `Nhật Chủ: ${batuChart.day_master}`,
+                `Ngũ Hành Vượng: ${batuChart.five_elements_balance.dominant_element} (Khuyết: ${batuChart.five_elements_balance.lacking_element})`,
+                `Cung Mệnh Tử Vi tại ${tuviChart.menh_palace_branch} (${tuviChart.cuc_name})`,
+                `Cung Thân tại ${tuviChart.than_palace_branch}`,
+              ]}
+            />
+
             <button
               type="button"
               onClick={resetChart}
-              className="rounded-lg border border-slate-800 px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-slate-200 cursor-pointer"
+              className="rounded-lg border border-slate-800 px-3 py-2 text-xs font-medium text-slate-400 hover:text-slate-200 cursor-pointer"
             >
               🔄 Lập lá số khác
             </button>

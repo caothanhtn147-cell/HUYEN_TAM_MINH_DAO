@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useTarotDraw } from '@/hooks/useTarotDraw';
 import { SpreadType } from '@/types/tarot';
 import { TarotCardView } from './TarotCardView';
+import { SocialShareCard } from '../common/SocialShareCard';
 
 const SAMPLE_INTENTIONS = [
   'Thông điệp soi chiếu tâm lý cho tôi trong ngày hôm nay.',
@@ -153,15 +154,31 @@ export const TarotSpreadView: React.FC = () => {
       {/* Drawn Cards Display */}
       {drawData && drawData.cards.length > 0 && (
         <div className="space-y-6">
-          <div className="text-center space-y-1">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-400">
-              Kết Quả Trải Bài Tarot • Session #{drawData.draw_id.slice(0, 8)}
-            </span>
-            {drawData.intention && (
-              <p className="text-sm italic text-slate-300">
-                &quot;{drawData.intention}&quot;
-              </p>
-            )}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <div className="text-left space-y-1">
+              <span className="text-xs font-mono uppercase tracking-widest text-amber-400">
+                Kết Quả Trải Bài Tarot • Session #{drawData.draw_id.slice(0, 8)}
+              </span>
+              {drawData.intention && (
+                <p className="text-xs italic text-slate-300">
+                  &quot;{drawData.intention}&quot;
+                </p>
+              )}
+            </div>
+
+            <SocialShareCard
+              moduleName="TAROT SOI CHIẾU"
+              title={drawData.cards[0]?.name_vi || 'Trải Bài Tarot'}
+              subtitle={
+                drawData.intention
+                  ? `Tâm nguyện: "${drawData.intention}"`
+                  : `Trải bài ${drawData.cards.length} lá nhận thức`
+              }
+              insights={drawData.cards.map(
+                (c) =>
+                  `${c.name_vi} (${c.orientation === 'reversed' ? 'Bài Ngược' : 'Bài Xuôi'}): ${c.meaning_vi.slice(0, 80)}...`
+              )}
+            />
           </div>
 
           {/* Cards Grid Layout */}
