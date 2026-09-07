@@ -111,11 +111,10 @@ npm run build
 ### 3. Cổng VietQR Nạp Linh Điểm Tự Động *(Đã hoàn thành 100%)*
 - Endpoint `POST /api/v1/payments/vietqr` tự động tạo mã QR ngân hàng VietQR/MBBank/Vietcombank cộng Linh Điểm tức thì.
 
-### 4. Hướng Dẫn Chọn & Trỏ Tên Miền Custom Domain
-Sư Phụ có thể chọn mua một trong các tên miền đẹp sau:
-- **`huyentam.app`** *(Khuyên dùng nhất, ~300k-400k/năm)*: Đuôi `.app` chuẩn Web App hiện đại thế giới.
-- **`huyentam.com`** *(~250k-350k/năm)*: Đuôi thương hiệu quốc tế phổ biến.
-- **`huyentam.vn`** *(~550k-750k/năm)*: Đuôi quốc gia Việt Nam uy tín.
+### 4. Tên Miền Chính Thức & Cấu Hình DNS *(Đã sở hữu & Cấu hình 100%)*
+- **Tên miền chính thức:** **`https://huyentam.app`**
+- **Nhà đăng ký:** Namecheap (Đã kích hoạt ACTIVE: 2026 - 2027)
+- **Nameservers:** `ns1.vercel-dns.com` & `ns2.vercel-dns.com`
 
 ---
 

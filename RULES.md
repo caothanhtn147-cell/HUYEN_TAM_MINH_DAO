@@ -8,7 +8,10 @@
 - **`HT-023`**: Dashboard Consultation History & Self-Reflection Journal System (`f5be611`).
 - **`HT-024`**: Admin Governance & System Health Audit Metrics Dashboard (`ed5687e`).
 
-## 🚀 Final Launch & Commercialization Upgrades (Completed)
+## 🚀 Official Commercial Domain & Launch Setup (SEALED)
+- **Official Domain**: `https://huyentam.app`
+- **Domain Registrar**: Namecheap (`huyentam.app` ACTIVE: Sep 7, 2026 - Sep 7, 2027)
+- **Custom Nameservers**: `ns1.vercel-dns.com`, `ns2.vercel-dns.com`
 - **`STEP-1`**: 9:16 Social Share Canvas Exporter (`0b2ffe2`) — Dynamic 9:16 Story card export (<80KB WebP) for Tarot, IChing, & Astrology with Cinema Glow.
 - **`STEP-2`**: Multilingual i18n System (`837297d`) — Toggle between Tiếng Việt 🇻🇳 and English 🇺🇸 with client storage persistence.
 - **`STEP-3`**: Production Cloud Configs (`0e34a2c`) — `apps/web/vercel.json` and root `docker-compose.prod.yml` ready for zero-downtime cloud launch.
