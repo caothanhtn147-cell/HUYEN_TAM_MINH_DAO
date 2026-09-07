@@ -5,6 +5,7 @@ from app.api.v1.auth import router as auth_router
 from app.api.v1.duong_dao import router as duong_dao_router
 from app.api.v1.health import router as health_router
 from app.api.v1.iching import router as iching_router
+from app.api.v1.journal import router as journal_router
 from app.api.v1.payments import router as payments_router
 from app.api.v1.sessions import router as sessions_router
 from app.api.v1.tarot import router as tarot_router
@@ -37,6 +38,7 @@ def create_app() -> FastAPI:
     app.include_router(iching_router)
     app.include_router(astrology_router)
     app.include_router(duong_dao_router)
+    app.include_router(journal_router)
 
     return app
 

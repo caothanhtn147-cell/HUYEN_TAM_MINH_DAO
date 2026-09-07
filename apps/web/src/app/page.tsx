@@ -49,6 +49,12 @@ export default function Home() {
             >
               🌿 Dưỡng Đạo & Giấc Ngủ
             </a>
+            <a
+              href="/dashboard"
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs font-bold text-amber-300 hover:bg-amber-500/20 transition"
+            >
+              📊 Dashboard & Nhật Ký
+            </a>
           </div>
           <p className="text-slate-500 text-[11px]">
             Tất cả nội dung tư vấn tâm linh và lối sống được định hướng bằng triết học tự quan sát & minh bạch rõ ràng.

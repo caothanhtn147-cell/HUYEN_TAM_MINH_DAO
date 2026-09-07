@@ -2,6 +2,7 @@ from app.models.astrology import AstrologyReadingRecord
 from app.models.duong_dao import DuongDaoArticle
 from app.models.iching import IChingHexagram
 from app.models.ledger import CreditLedger, TransactionType
+from app.models.reflection_journal import ReflectionJournalEntry
 from app.models.tarot import TarotCard
 from app.models.user import User
 from app.models.user_profile import UserProfile
@@ -22,4 +23,5 @@ __all__ = [
     "IChingHexagram",
     "AstrologyReadingRecord",
     "DuongDaoArticle",
+    "ReflectionJournalEntry",
 ]
