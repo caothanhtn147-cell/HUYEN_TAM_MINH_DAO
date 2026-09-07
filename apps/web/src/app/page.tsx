@@ -37,6 +37,12 @@ export default function Home() {
             >
               ☯️ Gieo Quẻ Kinh Dịch
             </a>
+            <a
+              href="/astrology"
+              className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-xs font-bold text-cyan-300 hover:bg-cyan-500/20 transition"
+            >
+              🏛️ Lá Số Bát Tự & Tử Vi
+            </a>
           </div>
           <p className="text-slate-500 text-[11px]">
             Tất cả nội dung tư vấn tâm linh và lối sống được định hướng bằng triết học tự quan sát & minh bạch rõ ràng.
