@@ -43,6 +43,12 @@ export default function Home() {
             >
               🏛️ Lá Số Bát Tự & Tử Vi
             </a>
+            <a
+              href="/duong-dao"
+              className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-300 hover:bg-emerald-500/20 transition"
+            >
+              🌿 Dưỡng Đạo & Giấc Ngủ
+            </a>
           </div>
           <p className="text-slate-500 text-[11px]">
             Tất cả nội dung tư vấn tâm linh và lối sống được định hướng bằng triết học tự quan sát & minh bạch rõ ràng.
