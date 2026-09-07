@@ -61,3 +61,29 @@ async def receive_payment_webhook(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error processing payment webhook transaction.",
         ) from err
+
+
+@router.post(
+    "/vietqr",
+    summary="Tạo mã VietQR chuyển khoản ngân hàng tự động cộng Linh Điểm",
+    status_code=status.HTTP_200_OK,
+)
+async def generate_vietqr_payment(
+    bank_id: str = "MBBank",
+    account_no: str = "0399999999",
+    account_name: str = "HUYEN TAM MINH DAO",
+    amount_vnd: int = 50000,
+    user_id_ref: str = "USER_GUEST",
+) -> dict[str, str]:
+    """Generate dynamic VietQR image URL for instant bank transfer top-up."""
+    add_info = f"LINHDIEM {user_id_ref}"
+    qr_url = f"https://img.vietqr.io/image/{bank_id}-{account_no}-compact.png?amount={amount_vnd}&addInfo={add_info}&accountName={account_name}"
+    return {
+        "status": "success",
+        "qr_image_url": qr_url,
+        "bank_id": bank_id,
+        "account_no": account_no,
+        "account_name": account_name,
+        "amount_vnd": str(amount_vnd),
+        "transfer_content": add_info,
+    }
