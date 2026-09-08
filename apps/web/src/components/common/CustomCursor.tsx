@@ -11,15 +11,15 @@ interface Ripple {
 export const CustomCursor: React.FC = () => {
   const [pos, setPos] = useState<{ x: number; y: number }>({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(() => {
+    return typeof window !== 'undefined' && !window.matchMedia('(pointer: coarse)').matches;
+  });
   const [ripples, setRipples] = useState<Ripple[]>([]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
-
-    setIsVisible(true);
 
     const handleMouseMove = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });

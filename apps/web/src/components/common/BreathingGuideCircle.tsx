@@ -13,10 +13,7 @@ export const BreathingGuideCircle: React.FC = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    if (!isActive) {
-      setPhase('idle');
-      return;
-    }
+    if (!isActive) return;
 
     const runSequence = () => {
       // Step 1: Inhale 4s

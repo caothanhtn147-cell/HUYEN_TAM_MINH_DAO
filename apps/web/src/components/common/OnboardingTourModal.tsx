@@ -4,18 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const OnboardingTourModal: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return !localStorage.getItem('app_onboarded_v1');
+    }
+    return false;
+  });
   const [step, setStep] = useState<number>(1);
   const { language } = useLanguage();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hasSeenTour = localStorage.getItem('app_onboarded_v1');
-      if (!hasSeenTour) {
-        setIsOpen(true);
-      }
-    }
-  }, []);
 
   const handleClose = () => {
     setIsOpen(false);
