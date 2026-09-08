@@ -1,20 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Bell, BellOff, Check, Sparkles } from "lucide-react";
+import React, { useState } from "react";
+import { Bell, Check, Sparkles } from "lucide-react";
 
 export const DailyWisdomPushNotifier: React.FC = () => {
-  const [subscribed, setSubscribed] = useState(false);
-  const [supported, setSupported] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && "Notification" in window) {
-      setSupported(true);
-      if (Notification.permission === "granted") {
-        setSubscribed(true);
-      }
-    }
-  }, []);
+  const [supported] = useState<boolean>(() => {
+    return typeof window !== "undefined" && "Notification" in window;
+  });
+  const [subscribed, setSubscribed] = useState<boolean>(() => {
+    return typeof window !== "undefined" && "Notification" in window && Notification.permission === "granted";
+  });
 
   const handleTogglePush = async () => {
     if (!supported) return;

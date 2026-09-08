@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Sparkles, Eye, RefreshCw, ShieldCheck } from "lucide-react";
 
 export interface CardItem {

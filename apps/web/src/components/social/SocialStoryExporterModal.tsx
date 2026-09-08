@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { Download, Share2, Sparkles, X, Check, Image as ImageIcon } from "lucide-react";
+import React, { useState } from "react";
+import { Download, Share2, Sparkles, X, Check } from "lucide-react";
 
 interface SocialStoryExporterProps {
   isOpen: boolean;
@@ -20,7 +20,6 @@ export const SocialStoryExporterModal: React.FC<SocialStoryExporterProps> = ({
   quote = "Tâm tĩnh thì trí sáng. Mọi giông bão ngoài kia chỉ là phép thử để trui rèn bản lĩnh và sự bình an nội tại.",
   authorOrType = "Kinh Dịch Minh Triết",
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isExporting, setIsExporting] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -144,7 +143,7 @@ export const SocialStoryExporterModal: React.FC<SocialStoryExporterProps> = ({
               files: [file],
             });
             return;
-          } catch (e) {
+          } catch {
             // fallback to copy link
           }
         }
@@ -177,7 +176,7 @@ export const SocialStoryExporterModal: React.FC<SocialStoryExporterProps> = ({
           <div className="text-[10px] font-bold text-amber-300 tracking-wider uppercase">HUYỀN TÂM MINH ĐẠO</div>
           <div className="my-auto space-y-2">
             <div className="text-xs font-bold text-amber-400">{title}</div>
-            <p className="text-[11px] text-zinc-200 italic line-clamp-4">"{quote}"</p>
+            <p className="text-[11px] text-zinc-200 italic line-clamp-4">&ldquo;{quote}&rdquo;</p>
             <div className="text-[10px] text-amber-300 font-semibold">— {authorOrType}</div>
           </div>
           <div className="text-[9px] text-zinc-400">huyentam.app</div>

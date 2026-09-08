@@ -59,7 +59,7 @@ export function useAdminMetrics(
       module: 'system',
       severity: 'info',
       details: { operator: 'System Monitor', status: 'Optimal 100%' },
-      created_at: new Date(Date.now() - 3600000).toISOString(),
+      created_at: '2026-09-08T14:00:00.000Z',
     },
     {
       id: 'log-002',
@@ -68,7 +68,7 @@ export function useAdminMetrics(
       module: 'minh-kien',
       severity: 'info',
       details: { provider: 'Gemini 2.5 Pro', latency: '240ms' },
-      created_at: new Date(Date.now() - 7200000).toISOString(),
+      created_at: '2026-09-08T13:00:00.000Z',
     },
   ];
 

@@ -11,14 +11,10 @@ export const TextToSpeechVoiceSynth: React.FC<TextToSpeechVoiceSynthProps> = ({
   textToRead,
 }) => {
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
-  const [isSupported, setIsSupported] = useState<boolean>(false);
+  const [isSupported] = useState<boolean>(() => {
+    return typeof window !== 'undefined' && 'speechSynthesis' in window;
+  });
   const { language } = useLanguage();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      setIsSupported(true);
-    }
-  }, []);
 
   const handleToggleSpeech = () => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
