@@ -8,9 +8,11 @@
 - **`HT-023`**: Dashboard Consultation History & Self-Reflection Journal System (`f5be611`).
 - **`HT-024`**: Admin Governance & System Health Audit Metrics Dashboard (`ed5687e`).
 - **`HT-025`**: World-Class Big-Tech & Mystical Grade Visual Upgrade (`1af0f6d`).
-- **`HT-026`**: Cryptographic Hardware Entropy Upgrade (`7ec30cd`):
-  - 🔒 **W3C WebCrypto API Integration**: Nâng cấp toàn bộ thuật toán ngẫu nhiên rút bài Tarot & gieo quẻ Kinh Dịch từ `Math.random()` sang `window.crypto.getRandomValues()` (Hệ mật mã phần cứng W3C).
-  - 🎲 **Crypto Fisher-Yates Shuffle**: Thuật toán xáo bài & gieo 3 đồng xu cổ chuẩn xác 100% cấp độ Mật Mã Học.
+- **`HT-026`**: Cryptographic Hardware Entropy Upgrade (`7ec30cd`).
+- **`HT-027`**: World-Class Luxury Awwwards-Grade UI & 100% English-US i18n Sync (`4d38075`):
+  - 🌌 **StarfieldCanvas Particle Engine**: Nền dải ngân hà ngôi sao tự nhiên chuyển động hạt siêu mịn 120 FPS.
+  - 🇺🇸 **100% English-US Standardization**: Chuẩn hóa toàn bộ 100% từ ngữ trong các sub-views (Tarot, IChing, Bát Tự/Tử Vi, Dưỡng Đạo, Perspective Matrix, Buttons, Disclaimers) tự động chuyển ngữ Tiếng Anh Mỹ không còn bất kỳ chữ Tiếng Việt nào sót lại khi bật switch 🇺🇸 ENG.
+  - 🏆 **Luxury Bento Grid 2026**: Nâng cấp thanh trạng thái Live Ticker Edge Nodes, thẻ bài Titanium Glassmorphism & Cinema Glow đẳng cấp quốc tế.
 
 ## 🚀 Official Commercial Domain & Cloudflare Protection (SEALED)
 - **Official Domain**: `https://huyentam.app`
