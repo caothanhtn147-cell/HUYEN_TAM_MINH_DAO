@@ -44,8 +44,8 @@ export function useJournal(
       mood_tag: 'calm',
       source_module: 'general',
       insights: ['TâmTrí', 'ĐiềmTĩnh', 'TựQuanSát'],
-      created_at: new Date(Date.now() - 86400000).toISOString(),
-      updated_at: new Date(Date.now() - 86400000).toISOString(),
+      created_at: '2026-09-07T10:00:00.000Z',
+      updated_at: '2026-09-07T10:00:00.000Z',
     },
     {
       id: 'entry-002',
@@ -55,8 +55,8 @@ export function useJournal(
       mood_tag: 'reflective',
       source_module: 'tarot',
       insights: ['Tarot', 'TheStar', 'HyVọng'],
-      created_at: new Date(Date.now() - 172800000).toISOString(),
-      updated_at: new Date(Date.now() - 172800000).toISOString(),
+      created_at: '2026-09-06T10:00:00.000Z',
+      updated_at: '2026-09-06T10:00:00.000Z',
     }
   ];
 
@@ -66,7 +66,7 @@ export function useJournal(
       module_type: 'tarot',
       title_vi: 'Quẻ Tarot 3 Lá',
       summary_vi: 'The Fool (Quá khứ) - The Magician (Hiện tại) - The Star (Tương lai)',
-      timestamp: new Date(Date.now() - 172800000).toISOString(),
+      timestamp: '2026-09-06T10:00:00.000Z',
       reference_id: 'ref-001',
     },
     {
@@ -74,7 +74,7 @@ export function useJournal(
       module_type: 'iching',
       title_vi: 'Gieo Quẻ Kinh Dịch',
       summary_vi: 'Thuần Càn (Quẻ Động Hào 2 - Kiến Long Tại Điền)',
-      timestamp: new Date(Date.now() - 259200000).toISOString(),
+      timestamp: '2026-09-05T10:00:00.000Z',
       reference_id: 'ref-002',
     }
   ];
