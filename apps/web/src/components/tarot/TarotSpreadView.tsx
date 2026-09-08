@@ -7,6 +7,7 @@ import { TarotCardView } from './TarotCardView';
 import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
 import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
+import { TextToSpeechVoiceSynth } from '../common/TextToSpeechVoiceSynth';
 import { useLanguage } from '@/context/LanguageContext';
 
 const SAMPLE_INTENTIONS_VI = [
@@ -186,6 +187,11 @@ export const TarotSpreadView: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              <TextToSpeechVoiceSynth
+                textToRead={drawData.cards
+                  .map((c) => `${c.name_vi}: ${c.meaning_vi}. ${c.wisdom_reflection_vi}`)
+                  .join('. ')}
+              />
               <UserFeedbackModal moduleName="tarot" />
               <SocialShareCard
                 moduleName="TAROT SOI CHIẾU"

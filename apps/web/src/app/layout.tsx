@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: 'HUYỀN TÂM MINH ĐẠO | HuyenTam Wisdom',
   description:
     'Nền tảng triết học & biểu tượng soi chiếu nhận thức tâm lý, định hướng lối sống lành mạnh.',
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/globe.svg',
+    apple: '/globe.svg',
+  },
   openGraph: {
     title: 'HUYỀN TÂM MINH ĐẠO | HuyenTam Wisdom',
     description:

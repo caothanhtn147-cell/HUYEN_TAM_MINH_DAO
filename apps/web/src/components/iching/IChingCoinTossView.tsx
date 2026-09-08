@@ -9,6 +9,7 @@ import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
 import { Coin3D } from './Coin3D';
 import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
+import { TextToSpeechVoiceSynth } from '../common/TextToSpeechVoiceSynth';
 import { useLanguage } from '@/context/LanguageContext';
 
 const SAMPLE_INTENTIONS_VI = [
@@ -310,6 +311,9 @@ export const IChingCoinTossView: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              <TextToSpeechVoiceSynth
+                textToRead={`${tossData.primary_hexagram.name_vi}. ${tossData.primary_hexagram.judgement_vi}. ${tossData.primary_hexagram.wisdom_reflection_vi}`}
+              />
               <UserFeedbackModal moduleName="iching" />
               <SocialShareCard
                 moduleName="QUẺ KINH DỊCH"

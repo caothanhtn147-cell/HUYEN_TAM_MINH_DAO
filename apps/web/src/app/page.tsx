@@ -4,12 +4,21 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
 import { StarfieldCanvas } from '@/components/common/StarfieldCanvas';
+import { CustomCursor } from '@/components/common/CustomCursor';
+import { OnboardingTourModal } from '@/components/common/OnboardingTourModal';
+import { BiometricEntropyGauge } from '@/components/common/BiometricEntropyGauge';
 
 export default function Home() {
   const { t, language } = useLanguage();
 
   return (
     <main className="relative min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-between p-4 sm:p-8 overflow-hidden selection:bg-amber-500 selection:text-slate-950">
+      {/* Magnetic Glow Custom Cursor */}
+      <CustomCursor />
+
+      {/* 30-Second New User Onboarding Tour Modal */}
+      <OnboardingTourModal />
+
       {/* Interactive Particle Starfield Background */}
       <StarfieldCanvas />
 
@@ -79,6 +88,11 @@ export default function Home() {
           <p className="text-xs text-slate-400 leading-relaxed">
             {t('sloganSubtitle')}
           </p>
+        </div>
+
+        {/* Biometric Hardware Entropy Gauge */}
+        <div className="mx-auto max-w-2xl">
+          <BiometricEntropyGauge />
         </div>
       </section>
 
