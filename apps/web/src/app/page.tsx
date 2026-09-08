@@ -14,8 +14,9 @@ import { CyberMysticCardDeck } from '@/components/tarot/CyberMysticCardDeck';
 import { SocialStoryExporterModal } from '@/components/social/SocialStoryExporterModal';
 import { VietQRCheckoutModal } from '@/components/checkout/VietQRCheckoutModal';
 import { DailyWisdomPushNotifier } from '@/components/notifications/DailyWisdomPushNotifier';
+import { LiveSocialProofTicker } from '@/components/common/LiveSocialProofTicker';
 
-import { Sparkles, Share2, Crown, Bell } from 'lucide-react';
+import { Share2, Crown } from 'lucide-react';
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -64,7 +65,7 @@ export default function Home() {
           <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
           <span className="font-bold">CLOUDFLARE EDGE: ACTIVE</span>
           <span className="text-slate-600">|</span>
-          <span>LATENCY: 0.01ms</span>
+          <LiveSocialProofTicker />
         </div>
         <div className="flex items-center gap-2 text-slate-400">
           <span>🔒 W3C WEBCRYPTO E2EE VAULT</span>
