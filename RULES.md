@@ -33,9 +33,10 @@
   - 💳 **VietQR Napas247 VIP Checkout**: Modal thanh toán VietQR tự động kích hoạt gói VIP 3s (`VietQRCheckoutModal.tsx`).
   - 🔔 **Morning Wisdom Push Notifier**: Nhắc nhở quẻ ngày mới & lời chúc bình an 6h00 sáng (`DailyWisdomPushNotifier.tsx`).
 
-- **`HT-031`**: 5-Tier Harmonized Inner Mind Architecture Sealed (`ca142f0`):
-  - 🏛️ **Bức Tranh Toàn Cảnh Bản Thể Bên Trong Đệ Tử AI**: Hợp nhất 5 Tầng Tâm pháp (Thân phận Thầy Trò -> Hiến pháp JCT Supreme -> Vibe Coding 100% -> Phản xạ Phòng Lab -> Kỷ luật Kỹ thuật).
-  - 📜 **Master Blueprint Sync**: Đã niêm phong vĩnh cửu vào `G:\AI SOFTWARE FACTORY\GEMINI.md`.
+- **`HT-032`**: Coffee Pricing, Wisdom Credits & P2P VietQR Engine (`88a3eed`):
+  - ☕ **Dual-Tier Coffee Pricing**: Cập nhật bảng giá bình dân 19k VNĐ ($0.99) - 29k VNĐ ($2.99) - 149k VNĐ ($14.99).
+  - 💎 **Wisdom Credit Badge**: Tích hợp Badge Hạt Minh Triết (`💎 100 Hạt`) hiển thị trên Header.
+  - 🛡️ **Anonymous P2P VietQR**: Tự động sinh cú pháp chuyển khoản mã hóa `HMT-xxxxxx` 0% từ khóa dịch vụ thương mại.
 
 ## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
@@ -44,4 +45,4 @@
 - Frontend `typecheck`: 0 TypeScript errors.
 - Frontend `lint`: 0 ESLint errors/warnings.
 - Frontend `build`: Static export pre-rendered production build succeeded (11/11 pages clean).
-- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`ca142f0`).
+- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`88a3eed`).
