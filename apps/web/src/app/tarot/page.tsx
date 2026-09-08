@@ -16,7 +16,7 @@ export default function TarotPage() {
           <span className="inline-block rounded-full bg-amber-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 border border-amber-500/20">
             Hệ Thống Biểu Tượng & Gương Soi Tâm Lý
           </span>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50">
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50 font-cinzel">
             RÚT BÀI TAROT CHIÊM NGHIỆM
           </h1>
           <p className="text-xs md:text-sm text-slate-400 italic">

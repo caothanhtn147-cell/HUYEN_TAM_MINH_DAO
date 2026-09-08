@@ -16,8 +16,8 @@ export default function AstrologyPage() {
           <span className="inline-block rounded-full bg-amber-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 border border-amber-500/20">
             Hệ Thống Biểu Tượng & Cấu Trúc Bản Thể
           </span>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50">
-            LẬP LÁ SỐ BÁT TỰ & TỬ VI SO I CHIẾU
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50 font-cinzel">
+            LẬP LÁ SỐ BÁT TỰ & TỬ VI SOI CHIẾU
           </h1>
           <p className="text-xs md:text-sm text-slate-400 italic">
             &quot;Thấu hiểu Tứ Trụ Ngũ Hành — Nhận diện 12 Cung Số — Tự tại làm chủ bản thể&quot;

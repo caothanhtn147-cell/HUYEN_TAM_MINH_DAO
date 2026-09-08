@@ -16,7 +16,7 @@ export default function DuongDaoPage() {
           <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-400 border border-emerald-500/20">
             Mô-đun Giáo Dục Sức Khỏe & Nhịp Sinh Học
           </span>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50">
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50 font-cinzel">
             DƯỠNG ĐẠO — NGHỆ THUẬT SỐNG THUẬN TỰ NHIÊN
           </h1>
           <p className="text-xs md:text-sm text-slate-400 italic">

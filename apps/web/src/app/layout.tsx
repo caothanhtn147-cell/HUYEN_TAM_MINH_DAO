@@ -1,7 +1,23 @@
 import type { Metadata } from 'next';
+import { Be_Vietnam_Pro, Cinzel } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { AuthProvider } from '@/context/AuthContext';
+import { UniversalNavigationBar } from '@/components/common/UniversalNavigationBar';
+
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ['vietnamese', 'latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['600', '700', '800', '900'],
+  variable: '--font-cinzel',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://huyentam.app'),
@@ -37,9 +53,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100 font-sans">
+      <body className={`min-h-full flex flex-col bg-slate-950 text-slate-100 font-sans ${beVietnamPro.variable} ${cinzel.variable}`}>
         <AuthProvider>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <UniversalNavigationBar />
+            {children}
+          </LanguageProvider>
         </AuthProvider>
       </body>
     </html>

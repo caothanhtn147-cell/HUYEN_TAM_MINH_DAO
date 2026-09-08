@@ -16,7 +16,7 @@ export default function DashboardPage() {
           <span className="inline-block rounded-full bg-amber-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 border border-amber-500/20">
             Bảng Điều Khiển Cá Nhân & Nhật Ký
           </span>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50">
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50 font-cinzel">
             NHẬT KÝ TỰ SOI CHIẾU & LỊCH SỬ CHIÊM NGHIỆM
           </h1>
           <p className="text-xs md:text-sm text-slate-400 italic">

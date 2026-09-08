@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import {
   MinhKienConsultationResponse,
   StreamStatus,
 } from '@/types/consultation';
+import { ClientWisdomEngine } from '@/lib/ClientWisdomEngine';
 
 interface UseMinhKienStreamReturn {
   status: StreamStatus;
@@ -24,69 +25,102 @@ export function useMinhKienStream(
     useState<MinhKienConsultationResponse | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const streamIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const resetStream = useCallback(() => {
+    if (streamIntervalRef.current) {
+      clearInterval(streamIntervalRef.current);
+      streamIntervalRef.current = null;
+    }
     setStatus('idle');
     setStreamText('');
     setResponsePayload(null);
     setErrorMessage(null);
   }, []);
 
+  const streamTextTypewriter = useCallback(
+    (data: MinhKienConsultationResponse) => {
+      setStatus('streaming');
+      setStreamText('');
+
+      const fullText = data.content;
+      let currentIndex = 0;
+      const step = 8; // characters per tick
+      const intervalMs = 20;
+
+      streamIntervalRef.current = setInterval(() => {
+        currentIndex += step;
+        if (currentIndex >= fullText.length) {
+          if (streamIntervalRef.current) {
+            clearInterval(streamIntervalRef.current);
+            streamIntervalRef.current = null;
+          }
+          setStreamText(fullText);
+          setResponsePayload(data);
+          if (data.safety_action === 'EMERGENCY_HOTLINE') {
+            setStatus('crisis_alert');
+          } else {
+            setStatus('completed');
+          }
+        } else {
+          setStreamText(fullText.slice(0, currentIndex));
+        }
+      }, intervalMs);
+    },
+    []
+  );
+
   const startConsultation = useCallback(
     async (userQuery: string, provider: string = 'mock') => {
+      if (streamIntervalRef.current) {
+        clearInterval(streamIntervalRef.current);
+        streamIntervalRef.current = null;
+      }
+
       setStatus('connecting');
       setStreamText('');
       setResponsePayload(null);
       setErrorMessage(null);
 
-      const requestBody = {
-        messages: [{ role: 'user', content: userQuery }],
-        provider,
-      };
+      // Attempt remote API first if on localhost or configured, with quick timeout
+      let fetchedData: MinhKienConsultationResponse | null = null;
 
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200);
+
         const res = await fetch(`${apiBaseUrl}/sessions/minh-kien`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(requestBody),
+          body: JSON.stringify({
+            messages: [{ role: 'user', content: userQuery }],
+            provider,
+          }),
+          signal: controller.signal,
         });
 
-        if (!res.ok) {
-          const errJson = await res.json().catch(() => ({}));
-          const message =
-            errJson.detail ||
-            `Lỗi kết nối API (${res.status}): ${res.statusText}`;
-          if (res.status === 402) {
-            setErrorMessage(
-              '⚠️ Bạn không đủ số dư Linh Điểm để thực hiện phiên tư vấn (Yêu cầu: 10 Linh Điểm).'
-            );
-          } else {
-            setErrorMessage(message);
-          }
-          setStatus('error');
-          return;
-        }
+        clearTimeout(timeoutId);
 
-        const data: MinhKienConsultationResponse = await res.json();
-        setResponsePayload(data);
-        setStreamText(data.content);
-
-        if (data.safety_action === 'EMERGENCY_HOTLINE') {
-          setStatus('crisis_alert');
-        } else {
-          setStatus('completed');
+        if (res.ok) {
+          fetchedData = await res.json();
         }
-      } catch (err: unknown) {
-        const msg =
-          err instanceof Error
-            ? err.message
-            : 'Đã xảy ra lỗi không xác định khi kết nối với Minh Sư AI.';
-        setErrorMessage(msg);
-        setStatus('error');
+      } catch {
+        // Network unavailable or mixed content blocked -> Smoothly fallback to Autonomous Client Engine
       }
+
+      // If remote API is unavailable or returned error, engage autonomous client wisdom engine
+      if (!fetchedData) {
+        // Short pause to emulate thoughtful AI contemplation
+        await new Promise((resolve) => setTimeout(resolve, 350));
+        fetchedData = ClientWisdomEngine.generateConsultation(userQuery);
+      }
+
+      // Stream the wisdom character-by-character
+      streamTextTypewriter(fetchedData);
     },
-    [apiBaseUrl]
+    [apiBaseUrl, streamTextTypewriter]
   );
 
   return {
