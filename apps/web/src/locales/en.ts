@@ -148,4 +148,30 @@ export const en: typeof vi = {
   perspectiveTech: 'Cognitive Science',
   perspectiveEnterprise: 'Big Tech & Enterprise',
   perspectiveJCT: 'JCT Master Matrix',
+
+  // 8K Deck & Visuals i18n
+  deckHeaderTitle: '3D Cyber-Mystic & I Ching 8K Sacred Deck',
+  deckHeaderSub: '8K rendered card faces • 3D Specular Sweep Tilt on mouse hover',
+  deckFlipBtn: 'Flip Card for Wisdom',
+
+  // VietQR Coffee & VIP Checkout i18n
+  checkoutHeaderTitle: 'Support Coffee ☕ VIP Wisdom Seeds',
+  checkoutHeaderSub: 'Coffee Pricing Model: 19k/29k VNĐ & $0.99/$2.99 USD',
+  checkoutPlan1Title: 'Friendly Coffee Cup (19K VNĐ / $0.99 USD)',
+  checkoutPlan2Title: 'VIP Coffee Cup Unlock (29K VNĐ / $2.99 USD)',
+  checkoutPlan3Title: 'Soulmate Seed Lifetime (149K VNĐ / $14.99 USD)',
+  checkoutSyntaxWarn: 'Personal P2P transfer syntax (individual tax-exempt transfer):',
+  checkoutBtnCopy: 'Copy Syntax',
+  checkoutCopied: 'Copied!',
+
+  // Story Exporter & Header Badges i18n
+  socialStoryTitle: 'TODAY\'S WISDOM REFLECTION',
+  socialStorySub: 'HuyenTam Wisdom • Daily Message',
+  socialStoryQuote: 'A serene mind illuminates wisdom. External storms are merely tests to forge inner strength and peace.',
+  socialStoryAuthor: 'I Ching Living Philosophy',
+  seedsBadge: '💎 100 Seeds',
+  vipBtnText: 'VIP $2.99 Coffee',
+  withdrawBtn: '💸 WITHDRAW TO MASTER VAULT',
+  withdrawSuccess: 'Funds successfully transferred to Master Vault!',
+  liveTickerOnlineCount: '4,892 live users online',
 };

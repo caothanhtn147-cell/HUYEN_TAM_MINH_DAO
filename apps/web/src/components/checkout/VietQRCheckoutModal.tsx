@@ -155,7 +155,7 @@ export const VietQRCheckoutModal: React.FC<VietQRCheckoutModalProps> = ({
           </div>
 
           <p className="text-[10px] text-zinc-400 italic pt-1 border-t border-zinc-800">
-            💡 {currentPlan.descVn}
+            💡 {isVn ? currentPlan.descVn : currentPlan.descEn}
           </p>
         </div>
 

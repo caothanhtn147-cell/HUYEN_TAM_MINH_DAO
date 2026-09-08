@@ -146,6 +146,32 @@ export const vi = {
   perspectiveTech: 'Tâm Lý Học Nhận Thức',
   perspectiveEnterprise: 'Quản Trị Enterprise',
   perspectiveJCT: 'Vị Thế Sư Phụ JCT',
+
+  // 8K Deck & Visuals i18n
+  deckHeaderTitle: 'Thánh Trận Bài 3D Cyber-Mystic & Kinh Dịch 8K',
+  deckHeaderSub: 'Mặt bài render 8K ma mị • Ánh sáng Specular Sweep 3D Tilt nghiêng theo tay rê',
+  deckFlipBtn: 'Lật Bài Khai Sáng',
+
+  // VietQR Coffee & VIP Checkout i18n
+  checkoutHeaderTitle: 'Ủng Hộ Cà Phê ☕ VIP Hạt Minh Triết',
+  checkoutHeaderSub: 'Mô hình giá cà phê 19k / 29k Việt Nam & $0.99 / $2.99 Quốc Tế',
+  checkoutPlan1Title: 'Cốc Cà Phê Giao Lưu (19K VNĐ / $0.99 USD)',
+  checkoutPlan2Title: 'Cốc Cà Phê VIP Mở Khóa (29K VNĐ / $2.99 USD)',
+  checkoutPlan3Title: 'Hạt Giống Tri Kỷ Lifetime (149K VNĐ / $14.99 USD)',
+  checkoutSyntaxWarn: 'Nội dung chuyển khoản chuẩn P2P cá nhân không bị tính thuế doanh nghiệp:',
+  checkoutBtnCopy: 'Sao chép cú pháp',
+  checkoutCopied: 'Đã sao chép!',
+
+  // Story Exporter & Header Badges i18n
+  socialStoryTitle: 'LỜI KHUYÊN MINH KIẾN HÔM NAY',
+  socialStorySub: 'Huyền Tâm Minh Đạo • Quẻ Ngày Mới',
+  socialStoryQuote: 'Tâm tĩnh thì trí sáng. Mọi giông bão ngoài kia chỉ là phép thử để trui rèn bản lĩnh và sự bình an nội tại.',
+  socialStoryAuthor: 'Kinh Dịch Minh Triết',
+  seedsBadge: '💎 100 Hạt',
+  vipBtnText: 'VIP 29K Cà Phê',
+  withdrawBtn: '💸 RÚT TIỀN VỀ VÍ SƯ PHỤ JCT',
+  withdrawSuccess: 'Đã chuyển tiền về ví thành công!',
+  liveTickerOnlineCount: '4,892 công dân đang online',
 };
 
 export type TranslationKeys = keyof typeof vi;

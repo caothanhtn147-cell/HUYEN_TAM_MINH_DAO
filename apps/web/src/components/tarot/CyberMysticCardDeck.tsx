@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Sparkles, RefreshCw, ShieldCheck, Crown, Flame, Sun } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface CardItem {
   id: string;
@@ -52,6 +53,7 @@ const SAMPLE_CARDS: CardItem[] = [
 ];
 
 export const CyberMysticCardDeck: React.FC = () => {
+  const { t } = useLanguage();
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [activeCard, setActiveCard] = useState<CardItem | null>(null);
   const [tilt, setTilt] = useState<{ [key: number]: { x: number; y: number } }>({});
@@ -89,10 +91,10 @@ export const CyberMysticCardDeck: React.FC = () => {
             <Sparkles className="h-3.5 w-3.5" /> 8K Cyber-Mystic Art Deck
           </div>
           <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-purple-400">
-            Thánh Trận Bài 3D Cyber-Mystic & Kinh Dịch 8K
+            {t('deckHeaderTitle')}
           </h3>
           <p className="text-xs text-zinc-400 mt-1">
-            Mặt bài render 8K ma mị • Ánh sáng Specular Sweep 3D Tilt nghiêng theo tay rê
+            {t('deckHeaderSub')}
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs text-amber-300 bg-amber-950/40 px-3.5 py-2 rounded-full border border-amber-500/30 shadow-lg">
@@ -144,12 +146,12 @@ export const CyberMysticCardDeck: React.FC = () => {
                       <Sparkles className="h-10 w-10 text-amber-300 animate-pulse" />
                     </div>
                     <span className="text-xs font-extrabold tracking-wider text-amber-200 uppercase bg-amber-950/60 px-3 py-1 rounded-full border border-amber-500/30">
-                      Lật Bài Khai Sáng
+                      {t('deckFlipBtn')}
                     </span>
                   </div>
 
                   <div className="w-full text-center text-[10px] text-amber-400/70 tracking-widest uppercase font-bold relative z-10">
-                    HUYỀN TÂM MINH ĐẠO • 8K ART
+                    {t('brandName')} • 8K ART
                   </div>
                 </div>
 

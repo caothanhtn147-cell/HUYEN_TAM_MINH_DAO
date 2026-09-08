@@ -45,6 +45,10 @@
   - 🎯 **Smart Click Ripple & Zero-Blink Cursor**: Khắc phục dứt điểm lỗi nháy lặp vô hạn. Vòng tròn click chuột tự động hủy sạch sau 450ms (`CustomCursor.tsx` + `globals.css` `@keyframes ping-once`), gỡ bỏ hoàn toàn `animate-pulse` gây nhấp nháy liên tục.
   - 🖼️ **Real High-Res Photographic Artwork Upgrade**: Thay thế toàn bộ icon hoạt họa bằng **Ảnh Nghệ Thuật Nhiếp Ảnh Huyền Thuật 8K** thật trên 5 Thẻ Bento Grid Trụ Cột (`app/page.tsx`) và Bộ Bài 3D Tarot (`CyberMysticCardDeck.tsx`).
 
+- **`HT-037`**: 100% Universal Multilingual i18n Alignment (Từ Gốc Tới Ngọn):
+  - 🌐 **Seamless Dual Language Engine**: Chuyển hóa 100% mọi thành phần trong dự án (Header, Badges, Modals 9:16 Story, VietQR Checkout, Live Activity Toasts, Deck Title, Admin Vault) đồng bộ theo nút bấm **VIE 🇻🇳 / ENG 🇺🇸**.
+  - 📚 **Dictionary Expansion**: Bổ sung bộ từ khóa song ngữ chuẩn xác trong `locales/vi.ts` & `locales/en.ts`.
+
 ## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
 - Backend `ruff check`: 0 errors.

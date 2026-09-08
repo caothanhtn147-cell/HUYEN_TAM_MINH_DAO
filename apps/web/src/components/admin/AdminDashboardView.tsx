@@ -121,11 +121,11 @@ export const AdminDashboardView: React.FC = () => {
           >
             {withdrawSuccess ? (
               <>
-                <Check className="h-4 w-4 text-zinc-950" /> Đã Phát Lệnh Chuyển Về Ví Sư Phụ!
+                <Check className="h-4 w-4 text-zinc-950" /> {t('withdrawSuccess')}
               </>
             ) : (
               <>
-                <Wallet className="h-4 w-4" /> 💸 RÚT TIỀN VỀ VÍ SƯ PHỤ JCT
+                <Wallet className="h-4 w-4" /> {t('withdrawBtn')}
               </>
             )}
           </button>

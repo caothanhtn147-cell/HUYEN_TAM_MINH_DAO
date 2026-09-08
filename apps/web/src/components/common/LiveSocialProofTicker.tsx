@@ -2,23 +2,28 @@
 
 import React, { useState, useEffect } from "react";
 import { Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface LiveToast {
   id: number;
-  message: string;
+  messageVn: string;
+  messageEn: string;
   location: string;
-  timeAgo: string;
+  timeAgoVn: string;
+  timeAgoEn: string;
 }
 
 const NOTIFICATIONS: Omit<LiveToast, "id">[] = [
-  { message: "vừa gieo quẻ Kinh Dịch 'Thuần Càn'", location: "Hà Nội 🇻🇳", timeAgo: "12 giây trước" },
-  { message: "vừa nạp Gói VIP Cốc Cà Phê 29K", location: "TP. Hồ Chí Minh 🇻🇳", timeAgo: "25 giây trước" },
-  { message: "vừa rút quẻ Tarot 'The Star'", location: "California 🇺🇸", timeAgo: "40 giây trước" },
-  { message: "vừa kích hoạt 20 Hạt Minh Triết", location: "Đà Nẵng 🇻🇳", timeAgo: "1 phút trước" },
-  { message: "vừa mở khóa Lá Số Tử Vi 12 Cung", location: "Tokyo 🇯🇵", timeAgo: "2 phút trước" },
+  { messageVn: "vừa gieo quẻ Kinh Dịch 'Thuần Càn'", messageEn: "just cast I Ching hexagram 'Pure Qian'", location: "Hà Nội 🇻🇳", timeAgoVn: "12 giây trước", timeAgoEn: "12s ago" },
+  { messageVn: "vừa nạp Gói VIP Cốc Cà Phê 29K", messageEn: "just unlocked VIP Coffee Tier ($2.99)", location: "TP. Hồ Chí Minh 🇻🇳", timeAgoVn: "25 giây trước", timeAgoEn: "25s ago" },
+  { messageVn: "vừa rút quẻ Tarot 'The Star'", messageEn: "just drew Tarot card 'The Star'", location: "California 🇺🇸", timeAgoVn: "40 giây trước", timeAgoEn: "40s ago" },
+  { messageVn: "vừa kích hoạt 20 Hạt Minh Triết", messageEn: "just activated 20 Wisdom Credits", location: "Đà Nẵng 🇻🇳", timeAgoVn: "1 phút trước", timeAgoEn: "1m ago" },
+  { messageVn: "vừa mở khóa Lá Số Tử Vi 12 Cung", messageEn: "just unlocked 12-Palace Tu Vi Chart", location: "Tokyo 🇯🇵", timeAgoVn: "2 phút trước", timeAgoEn: "2m ago" },
 ];
 
 export const LiveSocialProofTicker: React.FC = () => {
+  const { language } = useLanguage();
+  const isVn = language !== "en";
   const [currentToast, setCurrentToast] = useState<LiveToast | null>(null);
   const [onlineCount, setOnlineCount] = useState(4892);
 
@@ -50,8 +55,8 @@ export const LiveSocialProofTicker: React.FC = () => {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span className="font-bold text-amber-300">{onlineCount.toLocaleString("vi-VN")}</span>
-        <span className="text-zinc-400 text-[10px]">Đang Trực Tuyến</span>
+        <span className="font-bold text-amber-300">{onlineCount.toLocaleString(isVn ? "vi-VN" : "en-US")}</span>
+        <span className="text-zinc-400 text-[10px]">{isVn ? "Đang Trực Tuyến" : "Online Users"}</span>
       </div>
 
       {/* Floating Live Social Toast Notification */}
@@ -61,10 +66,14 @@ export const LiveSocialProofTicker: React.FC = () => {
             <span className="flex items-center gap-1 font-bold">
               <Sparkles className="h-3 w-3 text-amber-300" /> LIVE ACTIVITY
             </span>
-            <span className="text-zinc-400">{currentToast.timeAgo}</span>
+            <span className="text-zinc-400">{isVn ? currentToast.timeAgoVn : currentToast.timeAgoEn}</span>
           </div>
           <p className="text-xs text-zinc-200 line-clamp-2">
-            Một công dân tại <span className="font-bold text-amber-300">{currentToast.location}</span> {currentToast.message}
+            {isVn ? (
+              <>Một công dân tại <span className="font-bold text-amber-300">{currentToast.location}</span> {currentToast.messageVn}</>
+            ) : (
+              <>A user in <span className="font-bold text-amber-300">{currentToast.location}</span> {currentToast.messageEn}</>
+            )}
           </p>
         </div>
       )}

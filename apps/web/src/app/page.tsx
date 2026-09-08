@@ -41,10 +41,10 @@ export default function Home() {
       <SocialStoryExporterModal
         isOpen={isStoryModalOpen}
         onClose={() => setIsStoryModalOpen(false)}
-        title="LỜI KHUYÊN MINH KIẾN HÔM NAY"
-        subtitle="Huyền Tâm Minh Đạo • Quẻ Ngày Mới"
-        quote="Tâm tĩnh thì trí sáng. Mọi giông bão ngoài kia chỉ là phép thử để trui rèn bản lĩnh và sự bình an nội tại."
-        authorOrType="Kinh Dịch Minh Triết"
+        title={t('socialStoryTitle')}
+        subtitle={t('socialStorySub')}
+        quote={t('socialStoryQuote')}
+        authorOrType={t('socialStoryAuthor')}
       />
 
       {/* VietQR Napas247 VIP Checkout Modal */}
@@ -97,14 +97,14 @@ export default function Home() {
             className="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold hover:bg-amber-500/20 transition"
             title="Số dư Hạt Minh Triết"
           >
-            <span>💎 100 Hạt</span>
+            <span>{t('seedsBadge')}</span>
           </div>
 
           {/* Quick Action Trigger Buttons for Story & VIP Checkout */}
           <button
             onClick={() => setIsStoryModalOpen(true)}
             className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/30 text-purple-300 text-xs font-semibold transition"
-            title="Xuất Story 9:16"
+            title={t('btnShareStory')}
           >
             <Share2 className="h-3.5 w-3.5" /> Story 9:16
           </button>
@@ -113,7 +113,7 @@ export default function Home() {
             onClick={() => setIsCheckoutModalOpen(true)}
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 text-xs font-bold shadow-md shadow-amber-500/20 transition active:scale-95"
           >
-            <Crown className="h-3.5 w-3.5" /> VIP 29K Cà Phê
+            <Crown className="h-3.5 w-3.5" /> {t('vipBtnText')}
           </button>
 
           <LanguageSwitcher />
