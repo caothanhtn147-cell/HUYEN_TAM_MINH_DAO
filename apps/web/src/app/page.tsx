@@ -50,8 +50,7 @@ export default function Home() {
       <VietQRCheckoutModal
         isOpen={isCheckoutModalOpen}
         onClose={() => setIsCheckoutModalOpen(false)}
-        planName="Gói VIP Minh Triết (1 Năm)"
-        amount={199000}
+        initialPlan="month"
       />
 
       {/* Ambient Cinema Glow Light Backgrounds */}
@@ -91,6 +90,15 @@ export default function Home() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Hạt Minh Triết Credit Badge */}
+          <div 
+            onClick={() => setIsCheckoutModalOpen(true)}
+            className="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold hover:bg-amber-500/20 transition"
+            title="Số dư Hạt Minh Triết"
+          >
+            <span>💎 100 Hạt</span>
+          </div>
+
           {/* Quick Action Trigger Buttons for Story & VIP Checkout */}
           <button
             onClick={() => setIsStoryModalOpen(true)}
@@ -104,7 +112,7 @@ export default function Home() {
             onClick={() => setIsCheckoutModalOpen(true)}
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 text-xs font-bold shadow-md shadow-amber-500/20 transition active:scale-95"
           >
-            <Crown className="h-3.5 w-3.5" /> VIP 199K
+            <Crown className="h-3.5 w-3.5" /> VIP 29K Cà Phê
           </button>
 
           <LanguageSwitcher />
