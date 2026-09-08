@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { DrawnCardItem } from '@/types/tarot';
+import { audioSynth } from '@/utils/audioSynth';
 
 interface TarotCardViewProps {
   card: DrawnCardItem;
@@ -17,6 +18,7 @@ export const TarotCardView: React.FC<TarotCardViewProps> = ({
   const [isFlipped, setIsFlipped] = useState<boolean>(autoFlip);
 
   const toggleFlip = () => {
+    audioSynth.playMysticChime();
     setIsFlipped((prev) => !prev);
   };
 

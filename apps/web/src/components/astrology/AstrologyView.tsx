@@ -8,11 +8,13 @@ import { TuViPalaceView } from './TuViPalaceView';
 import { BirthDataInput } from '@/types/astrology';
 import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
+import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
 
 export const AstrologyView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'batu' | 'tuvi' | 'synthesis'>(
     'batu'
   );
+  const [perspective, setPerspective] = useState<PerspectiveMode>('JCT_GOVERNANCE');
 
   const {
     isLoading,
@@ -43,6 +45,12 @@ export const AstrologyView: React.FC = () => {
       {/* Results Container */}
       {fullAnalysis && batuChart && tuviChart && (
         <div className="space-y-6">
+          {/* 5-Perspective Matrix Selector */}
+          <PerspectiveMatrixSelector
+            currentPerspective={perspective}
+            onChangePerspective={setPerspective}
+          />
+
           {/* Tab Navigation */}
           <div className="flex rounded-xl border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur">
             <button

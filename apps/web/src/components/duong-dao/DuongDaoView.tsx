@@ -5,6 +5,8 @@ import { useDuongDao } from '@/hooks/useDuongDao';
 import { DuongDaoCategory } from '@/types/duong_dao';
 import { SleepHygieneCalculator } from './SleepHygieneCalculator';
 import { DuongDaoArticleCard } from './DuongDaoArticleCard';
+import { SoundWaveVisualizer } from '../common/SoundWaveVisualizer';
+import { BreathingGuideCircle } from '../common/BreathingGuideCircle';
 
 export const DuongDaoView: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -28,6 +30,12 @@ export const DuongDaoView: React.FC = () => {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
+      {/* 432Hz Sound Generator */}
+      <SoundWaveVisualizer />
+
+      {/* 4-7-8 Bio Breathing Guide */}
+      <BreathingGuideCircle />
+
       {/* Interactive Sleep Hygiene Calculator Widget */}
       <SleepHygieneCalculator
         onCalculate={calculateSleepGuide}

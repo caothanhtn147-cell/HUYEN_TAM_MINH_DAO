@@ -7,6 +7,8 @@ import { IChingHexagramCardView } from './IChingHexagramCardView';
 import { CoinTossLine } from '@/types/iching';
 import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
+import { Coin3D } from './Coin3D';
+import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
 
 const SAMPLE_INTENTIONS = [
   'Hướng đi sáng suốt và điềm tĩnh cho sự nghiệp hiện tại.',
@@ -21,6 +23,7 @@ export const IChingCoinTossView: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(0); // 0 to 6
   const [stepTosses, setStepTosses] = useState<CoinTossLine[]>([]);
   const [isFlipping, setIsFlipping] = useState<boolean>(false);
+  const [perspective, setPerspective] = useState<PerspectiveMode>('JCT_GOVERNANCE');
 
   const { isLoading, tossData, errorMessage, executeToss, resetToss } =
     useIChingToss();
@@ -164,6 +167,20 @@ export const IChingCoinTossView: React.FC = () => {
           </div>
         )}
 
+        {/* 3D Coin Toss Animation */}
+        <Coin3D
+          isFlipping={isFlipping}
+          values={
+            stepTosses.length > 0
+              ? [
+                  stepTosses[stepTosses.length - 1].coin1,
+                  stepTosses[stepTosses.length - 1].coin2,
+                  stepTosses[stepTosses.length - 1].coin3,
+                ]
+              : [3, 3, 2]
+          }
+        />
+
         {/* Actions */}
         <div className="flex items-center justify-between pt-2">
           <button
@@ -208,6 +225,12 @@ export const IChingCoinTossView: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* 5-Perspective Matrix Selector */}
+      <PerspectiveMatrixSelector
+        currentPerspective={perspective}
+        onChangePerspective={setPerspective}
+      />
 
       {/* Error Message */}
       {errorMessage && (

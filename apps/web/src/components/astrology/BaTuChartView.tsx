@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { BaTuChartResponse, PillarDetail } from '@/types/astrology';
+import { FiveElementsPentagon } from '../common/FiveElementsPentagon';
 
 interface BaTuChartViewProps {
   chart: BaTuChartResponse;
@@ -100,40 +101,8 @@ export const BaTuChartView: React.FC<BaTuChartViewProps> = ({ chart }) => {
         {renderPillarCard('Trụ Giờ', chart.hour_pillar)}
       </div>
 
-      {/* Five Elements Balance Distribution */}
-      <div className="space-y-4 rounded-xl border border-slate-800 bg-slate-950/80 p-5">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400">
-            📊 Phân Bổ Ngũ Hành Bản Thể
-          </h3>
-          <span className="text-xs text-slate-400">
-            Vượng: <strong className="text-amber-300">{fe.dominant_element}</strong> • Nhược: <strong className="text-purple-300">{fe.lacking_element}</strong>
-          </span>
-        </div>
-
-        {/* Progress Bars */}
-        <div className="space-y-2.5">
-          {elementsList.map((item) => (
-            <div key={item.name} className="space-y-1">
-              <div className="flex justify-between text-xs font-semibold">
-                <span className={item.color.text}>Ngũ hành {item.name}</span>
-                <span className="text-slate-300 font-mono">{item.pct}%</span>
-              </div>
-              <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-500 ${item.color.bar}`}
-                  style={{ width: `${Math.min(100, Math.max(5, item.pct))}%` }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Balance Analysis */}
-        <p className="text-xs text-slate-300 leading-relaxed italic border-t border-slate-800/80 pt-3">
-          &quot;{fe.balance_analysis_vi}&quot;
-        </p>
-      </div>
+      {/* Five Elements Pentagon Component */}
+      <FiveElementsPentagon data={fe} />
 
       {/* Philosophical Reflections */}
       {chart.philosophical_reflections.length > 0 && (

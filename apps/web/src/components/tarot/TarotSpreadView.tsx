@@ -6,6 +6,7 @@ import { SpreadType } from '@/types/tarot';
 import { TarotCardView } from './TarotCardView';
 import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
+import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
 
 const SAMPLE_INTENTIONS = [
   'Thông điệp soi chiếu tâm lý cho tôi trong ngày hôm nay.',
@@ -17,6 +18,7 @@ const SAMPLE_INTENTIONS = [
 export const TarotSpreadView: React.FC = () => {
   const [spreadType, setSpreadType] = useState<SpreadType>('three_card');
   const [intention, setIntention] = useState<string>('');
+  const [perspective, setPerspective] = useState<PerspectiveMode>('JCT_GOVERNANCE');
   const { isLoading, drawData, errorMessage, drawCards, resetDraw } =
     useTarotDraw();
 
@@ -144,6 +146,12 @@ export const TarotSpreadView: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* 5-Perspective Matrix Selector */}
+      <PerspectiveMatrixSelector
+        currentPerspective={perspective}
+        onChangePerspective={setPerspective}
+      />
 
       {/* Error Message */}
       {errorMessage && (
