@@ -19,6 +19,7 @@ export const VietQRCheckoutModal: React.FC<VietQRCheckoutModalProps> = ({
   const [selectedPlan, setSelectedPlan] = useState<"pack" | "month" | "lifetime">(initialPlan);
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedAmount, setCopiedAmount] = useState(false);
+  const [paymentCode] = useState(() => `HMT-${Math.floor(100000 + Math.random() * 900000)}`);
 
   if (!isOpen) return null;
 
@@ -53,7 +54,6 @@ export const VietQRCheckoutModal: React.FC<VietQRCheckoutModalProps> = ({
   const currentPlan = planDetails[selectedPlan];
   const isVn = language !== "en";
 
-  const [paymentCode] = useState(() => `HMT-${Math.floor(100000 + Math.random() * 900000)}`);
   const qrImageUrl = `https://img.vietqr.io/image/MB-0388888888-compact2.png?amount=${currentPlan.amountVn}&addInfo=${paymentCode}&accountName=HUYEN%20TAM%20MINH%20DAO`;
 
   const copyToClipboard = (text: string, type: "code" | "amount") => {
