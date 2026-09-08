@@ -15,6 +15,7 @@ import {
   KeyRound,
   Check,
 } from 'lucide-react';
+import { SecurityVault } from '@/lib/SecurityVault';
 
 interface StageItem {
   stage: string;
@@ -84,9 +85,9 @@ export const UniversalNavigationBar: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleUnlockSovereign = () => {
-    const trimmed = secretInput.trim().toUpperCase();
-    if (trimmed === 'JCT-MASTER-KEY' || trimmed === 'JCT2026' || trimmed === 'SUPHU') {
+  const handleUnlockSovereign = async () => {
+    const isValid = await SecurityVault.verifyMasterKey(secretInput);
+    if (isValid) {
       setRole('sovereign_admin');
       topUpCredits(999999);
       setKeySuccess(true);

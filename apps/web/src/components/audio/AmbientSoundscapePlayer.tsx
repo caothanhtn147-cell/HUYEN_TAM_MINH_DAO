@@ -112,28 +112,34 @@ export const AmbientSoundscapePlayer: React.FC = () => {
     osc.start();
     oscRef.current = osc;
 
-    // 2. Harmonic Overtone (Tibetan Singing Bowl shimmer ratio 2.71x or octave)
+    // 2. Harmonic Overtone (Tibetan Singing Bowl shimmer ratio 2.714x)
     const overtoneOsc = ctx.createOscillator();
     overtoneOsc.type = 'sine';
     const overtoneFreq = preset.type === 'bowl' ? baseFreq * 2.714 : baseFreq * 2;
     overtoneOsc.frequency.setValueAtTime(overtoneFreq, ctx.currentTime);
 
+    // Warm Lowpass Filter to emulate physical bronze alloy body
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(2400, ctx.currentTime);
+    filter.connect(masterGain);
+
     const overtoneGain = ctx.createGain();
     overtoneGain.gain.setValueAtTime(0.18, ctx.currentTime);
     overtoneOsc.connect(overtoneGain);
-    overtoneGain.connect(masterGain);
+    overtoneGain.connect(filter);
     overtoneOsc.start();
     overtoneOscRef.current = overtoneOsc;
 
-    // 3. Deep Binaural Resonance Pulse (432 / 2 = 216Hz + 2Hz Theta Wave beat)
+    // 3. Deep Binaural Resonance Pulse (base / 2 + 1.8Hz Theta wave breath)
     const shimmerOsc = ctx.createOscillator();
     shimmerOsc.type = 'sine';
-    shimmerOsc.frequency.setValueAtTime(baseFreq / 2 + 2, ctx.currentTime);
+    shimmerOsc.frequency.setValueAtTime(baseFreq / 2 + 1.8, ctx.currentTime);
 
     const shimmerGain = ctx.createGain();
-    shimmerGain.gain.setValueAtTime(0.25, ctx.currentTime);
+    shimmerGain.gain.setValueAtTime(0.22, ctx.currentTime);
     shimmerOsc.connect(shimmerGain);
-    shimmerGain.connect(masterGain);
+    shimmerGain.connect(filter);
     shimmerOsc.start();
     shimmerOscRef.current = shimmerOsc;
   };
@@ -148,19 +154,36 @@ export const AmbientSoundscapePlayer: React.FC = () => {
     const ctx = audioCtxRef.current;
     if (ctx.state === 'suspended') ctx.resume();
 
-    // Strike bell sound with fast attack and exponential decay
-    const chimeOsc = ctx.createOscillator();
-    chimeOsc.type = 'sine';
-    chimeOsc.frequency.setValueAtTime(864, ctx.currentTime); // High crystal bowl harmonic
+    const now = ctx.currentTime;
+    const duration = 4.5;
 
-    const chimeGain = ctx.createGain();
-    chimeGain.gain.setValueAtTime(0.35, ctx.currentTime);
-    chimeGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 3.5);
+    // Layer 1: Fundamental warm bronze bell (432Hz)
+    const fundOsc = ctx.createOscillator();
+    fundOsc.type = 'sine';
+    fundOsc.frequency.setValueAtTime(432, now);
 
-    chimeOsc.connect(chimeGain);
-    chimeGain.connect(ctx.destination);
-    chimeOsc.start();
-    chimeOsc.stop(ctx.currentTime + 3.5);
+    const fundGain = ctx.createGain();
+    fundGain.gain.setValueAtTime(0.3, now);
+    fundGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    fundOsc.connect(fundGain);
+    fundGain.connect(ctx.destination);
+    fundOsc.start(now);
+    fundOsc.stop(now + duration);
+
+    // Layer 2: Shimmering crystal overtone (1172Hz - 2.714 ratio)
+    const overtoneOsc = ctx.createOscillator();
+    overtoneOsc.type = 'sine';
+    overtoneOsc.frequency.setValueAtTime(1172.4, now);
+
+    const overtoneGain = ctx.createGain();
+    overtoneGain.gain.setValueAtTime(0.2, now);
+    overtoneGain.gain.exponentialRampToValueAtTime(0.0001, now + duration * 0.85);
+
+    overtoneOsc.connect(overtoneGain);
+    overtoneGain.connect(ctx.destination);
+    overtoneOsc.start(now);
+    overtoneOsc.stop(now + duration * 0.85);
   };
 
   const togglePlay = () => {
