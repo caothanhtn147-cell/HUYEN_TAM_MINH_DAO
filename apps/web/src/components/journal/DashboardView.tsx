@@ -2,12 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { useJournal } from '@/hooks/useJournal';
+import { useLanguage } from '@/context/LanguageContext';
 import { JournalEditor } from './JournalEditor';
 import { JournalTimeline } from './JournalTimeline';
 import { ConsultationHistoryDashboard } from './ConsultationHistoryDashboard';
 import { JournalEntryCreate } from '@/types/journal';
 
 export const DashboardView: React.FC = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'journal' | 'history'>('journal');
   const [filterModule, setFilterModule] = useState<string>('ALL');
 
@@ -37,7 +39,7 @@ export const DashboardView: React.FC = () => {
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Navigation Tabs */}
-      <div className="flex rounded-xl border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur">
+      <div className="flex rounded-xl border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur shadow-lg">
         <button
           type="button"
           onClick={() => setActiveTab('journal')}
@@ -47,7 +49,7 @@ export const DashboardView: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          ✍️ Nhật Ký Tự Soi Chiếu ({journalEntries.length})
+          {t('dashTabReflection')} ({journalEntries.length})
         </button>
         <button
           type="button"
@@ -58,11 +60,11 @@ export const DashboardView: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          📜 Lịch Sử Chiêm Nghiệm ({historyTimeline.length})
+          {t('dashTabHistory')} ({historyTimeline.length})
         </button>
       </div>
 
-      {/* Error Message */}
+      {/* Error Message (Only if explicit error) */}
       {errorMessage && (
         <div className="rounded-xl border border-rose-500/30 bg-rose-950/30 p-4 text-xs text-rose-300 font-medium">
           ⚠️ {errorMessage}
@@ -78,20 +80,20 @@ export const DashboardView: React.FC = () => {
           {/* Module Filter Options */}
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">
-              📖 Dòng Thời Gian Nhật Ký
+              {t('dashTimelineHeader')}
             </h3>
 
             <select
               value={filterModule}
               onChange={(e) => setFilterModule(e.target.value)}
-              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1 text-xs text-slate-300 focus:border-amber-500 focus:outline-none"
+              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-300 focus:border-amber-500 focus:outline-none"
             >
-              <option value="ALL">Tất cả mô-đun</option>
-              <option value="general">Tự quan sát chung</option>
-              <option value="tarot">Bài Tarot</option>
-              <option value="iching">Kinh Dịch</option>
-              <option value="astrology">Bát Tự & Tử Vi</option>
-              <option value="minh_kien">Minh Kiến</option>
+              <option value="ALL">{t('adminFilterModule')}</option>
+              <option value="general">{t('dashSourceGeneral')}</option>
+              <option value="tarot">Tarot</option>
+              <option value="iching">Kinh Dịch / I Ching</option>
+              <option value="astrology">Tử Vi / Astrology</option>
+              <option value="minh_kien">Minh Kiến AI</option>
             </select>
           </div>
 
