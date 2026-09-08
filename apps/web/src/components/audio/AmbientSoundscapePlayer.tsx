@@ -34,7 +34,7 @@ export const AmbientSoundscapePlayer: React.FC = () => {
       try {
         oscRef.current.stop();
         oscRef.current.disconnect();
-      } catch (e) {
+      } catch {
         // ignore
       }
       oscRef.current = null;
@@ -43,7 +43,7 @@ export const AmbientSoundscapePlayer: React.FC = () => {
       try {
         subOscRef.current.stop();
         subOscRef.current.disconnect();
-      } catch (e) {
+      } catch {
         // ignore
       }
       subOscRef.current = null;

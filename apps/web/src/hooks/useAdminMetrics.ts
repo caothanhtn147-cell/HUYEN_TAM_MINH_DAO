@@ -18,6 +18,45 @@ interface UseAdminMetricsReturn {
   }) => Promise<boolean>;
 }
 
+const defaultMockMetrics: SystemHealthMetrics = {
+  api_status: 'HEALTHY (LOCAL_VAULT)',
+  uptime_seconds: 864000,
+  active_users_count: 1284,
+  total_consultations_count: 412,
+  total_tarot_draws_count: 385,
+  total_iching_tosses_count: 254,
+  total_astrology_charts_count: 143,
+  safety_alerts_count: 0,
+  ai_providers_status: {
+    'Gemini 2.5 Pro': 'ACTIVE',
+    'OpenAI GPT-4o': 'ACTIVE',
+    'Claude 3.5 Sonnet': 'ACTIVE',
+  },
+  database_connected: true,
+  redis_connected: true,
+};
+
+const defaultMockLogs: SystemAuditLog[] = [
+  {
+    id: 'log-001',
+    actor_id: 'system-monitor',
+    action: 'SYSTEM_HEALTH_CHECK',
+    module: 'system',
+    severity: 'info',
+    details: { operator: 'System Monitor', status: 'Optimal 100%' },
+    created_at: '2026-09-08T14:00:00.000Z',
+  },
+  {
+    id: 'log-002',
+    actor_id: 'ai-router',
+    action: 'AI_ROUTER_FAILOVER',
+    module: 'minh-kien',
+    severity: 'info',
+    details: { provider: 'Gemini 2.5 Pro', latency: '240ms' },
+    created_at: '2026-09-08T13:00:00.000Z',
+  },
+];
+
 export function useAdminMetrics(
   apiBaseUrl: string = 'http://127.0.0.1:8000/api/v1'
 ): UseAdminMetricsReturn {
@@ -32,45 +71,6 @@ export function useAdminMetrics(
     }
     return null;
   };
-
-  const defaultMockMetrics: SystemHealthMetrics = {
-    api_status: 'HEALTHY (LOCAL_VAULT)',
-    uptime_seconds: 864000,
-    active_users_count: 1284,
-    total_consultations_count: 412,
-    total_tarot_draws_count: 385,
-    total_iching_tosses_count: 254,
-    total_astrology_charts_count: 143,
-    safety_alerts_count: 0,
-    ai_providers_status: {
-      'Gemini 2.5 Pro': 'ACTIVE',
-      'OpenAI GPT-4o': 'ACTIVE',
-      'Claude 3.5 Sonnet': 'ACTIVE',
-    },
-    database_connected: true,
-    redis_connected: true,
-  };
-
-  const defaultMockLogs: SystemAuditLog[] = [
-    {
-      id: 'log-001',
-      actor_id: 'system-monitor',
-      action: 'SYSTEM_HEALTH_CHECK',
-      module: 'system',
-      severity: 'info',
-      details: { operator: 'System Monitor', status: 'Optimal 100%' },
-      created_at: '2026-09-08T14:00:00.000Z',
-    },
-    {
-      id: 'log-002',
-      actor_id: 'ai-router',
-      action: 'AI_ROUTER_FAILOVER',
-      module: 'minh-kien',
-      severity: 'info',
-      details: { provider: 'Gemini 2.5 Pro', latency: '240ms' },
-      created_at: '2026-09-08T13:00:00.000Z',
-    },
-  ];
 
   const fetchMetrics = useCallback(async () => {
     setIsLoading(true);

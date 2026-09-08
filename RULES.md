@@ -37,11 +37,15 @@
   - 👑 **Sovereign Admin Master Vault**: Giao diện quản trị đặc quyền dành riêng cho Sư Phụ JCT (`AdminDashboardView.tsx`) kèm Bảng Ngân khố Doanh thu VNĐ/USD và Nút [💸 RÚT TIỀN VỀ VÍ SƯ PHỤ JCT].
   - 🌐 **Live Social Proof Ticker**: Thanh nhịp đập trực tuyến hiển thị 4,892 công dân đang online & thông báo lướt quẻ thời gian thực (`LiveSocialProofTicker.tsx`).
 
+- **`HT-035`**: Total Code Hygiene & Zero-Warning React 19 Armor Sweep:
+  - 🧹 **Zero ESLint Warnings/Errors**: Đã dọn sạch 100% 23 linter errors & warnings (Unused imports, unescaped JSX quotes, missing hook dependencies).
+  - ⚡ **Hooks Purity Refactoring**: Chuyển các hằng số & hàm trợ lý `getLocalEntries`, `defaultMockMetrics` ra ngoài custom hooks (`useJournal.ts`, `useAdminMetrics.ts`).
+
 ## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
 - Backend `ruff check`: 0 errors.
 - Backend `pytest`: All unit tests passed 100%.
 - Frontend `typecheck`: 0 TypeScript errors.
-- Frontend `lint`: 0 ESLint errors/warnings.
+- Frontend `lint`: 0 ESLint errors/warnings (100% CLEAN).
 - Frontend `build`: Static export pre-rendered production build succeeded (11/11 pages clean).
-- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`ae0cf85`).
+- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git`.

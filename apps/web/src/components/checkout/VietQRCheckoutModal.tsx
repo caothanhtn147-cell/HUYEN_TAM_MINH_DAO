@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, Copy, Crown, ShieldCheck, X, Coffee } from "lucide-react";
+import { Check, Copy, ShieldCheck, X, Coffee } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface VietQRCheckoutModalProps {
@@ -116,6 +116,7 @@ export const VietQRCheckoutModal: React.FC<VietQRCheckoutModalProps> = ({
 
         {/* Selected Plan Details & VietQR Image */}
         <div className="relative mx-auto w-52 h-52 rounded-2xl bg-white p-2.5 shadow-xl border-2 border-amber-400/40 flex items-center justify-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={qrImageUrl}
             alt="Mã VietQR P2P Mã Hóa"

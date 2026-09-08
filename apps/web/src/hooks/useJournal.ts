@@ -18,6 +18,74 @@ interface UseJournalReturn {
   deleteEntry: (id: string) => Promise<boolean>;
 }
 
+const defaultMockEntries: JournalEntry[] = [
+  {
+    id: 'entry-001',
+    user_id: 'user-default',
+    title: 'Nhận Thức Về Tâm Trí & Sự Tĩnh Lặng',
+    content: 'Hôm nay tự quan sát nhận ra tâm trí thường bị lôi kéo bởi các tình huống bên ngoài. Khi quay về lắng nghe hơi thở, sự điềm tĩnh lập tức quay trở lại.',
+    mood_tag: 'calm',
+    source_module: 'general',
+    insights: ['TâmTrí', 'ĐiềmTĩnh', 'TựQuanSát'],
+    created_at: '2026-09-07T10:00:00.000Z',
+    updated_at: '2026-09-07T10:00:00.000Z',
+  },
+  {
+    id: 'entry-002',
+    user_id: 'user-default',
+    title: 'Quẻ Bài Tarot Soi Chiếu Định Hướng',
+    content: 'Lá bài The Star nhắc nhở giữ vững niềm tin và kiên định với con đường đã chọn. Không nóng vội, từng bước hoàn thiện.',
+    mood_tag: 'reflective',
+    source_module: 'tarot',
+    insights: ['Tarot', 'TheStar', 'HyVọng'],
+    created_at: '2026-09-06T10:00:00.000Z',
+    updated_at: '2026-09-06T10:00:00.000Z',
+  }
+];
+
+const defaultMockHistory: ConsultationHistoryItem[] = [
+  {
+    id: 'hist-001',
+    module_type: 'tarot',
+    title_vi: 'Quẻ Tarot 3 Lá',
+    summary_vi: 'The Fool (Quá khứ) - The Magician (Hiện tại) - The Star (Tương lai)',
+    timestamp: '2026-09-06T10:00:00.000Z',
+    reference_id: 'ref-001',
+  },
+  {
+    id: 'hist-002',
+    module_type: 'iching',
+    title_vi: 'Gieo Quẻ Kinh Dịch',
+    summary_vi: 'Thuần Càn (Quẻ Động Hào 2 - Kiến Long Tại Điền)',
+    timestamp: '2026-09-05T10:00:00.000Z',
+    reference_id: 'ref-002',
+  }
+];
+
+const getLocalEntries = (): JournalEntry[] => {
+  if (typeof window === 'undefined') return defaultMockEntries;
+  try {
+    const stored = localStorage.getItem('ht_journal_entries');
+    if (stored) return JSON.parse(stored);
+    localStorage.setItem('ht_journal_entries', JSON.stringify(defaultMockEntries));
+    return defaultMockEntries;
+  } catch {
+    return defaultMockEntries;
+  }
+};
+
+const getLocalHistory = (): ConsultationHistoryItem[] => {
+  if (typeof window === 'undefined') return defaultMockHistory;
+  try {
+    const stored = localStorage.getItem('ht_consultation_history');
+    if (stored) return JSON.parse(stored);
+    localStorage.setItem('ht_consultation_history', JSON.stringify(defaultMockHistory));
+    return defaultMockHistory;
+  } catch {
+    return defaultMockHistory;
+  }
+};
+
 export function useJournal(
   apiBaseUrl: string = 'http://127.0.0.1:8000/api/v1'
 ): UseJournalReturn {
@@ -33,74 +101,6 @@ export function useJournal(
       return localStorage.getItem('access_token');
     }
     return null;
-  };
-
-  const defaultMockEntries: JournalEntry[] = [
-    {
-      id: 'entry-001',
-      user_id: 'user-default',
-      title: 'Nhận Thức Về Tâm Trí & Sự Tĩnh Lặng',
-      content: 'Hôm nay tự quan sát nhận ra tâm trí thường bị lôi kéo bởi các tình huống bên ngoài. Khi quay về lắng nghe hơi thở, sự điềm tĩnh lập tức quay trở lại.',
-      mood_tag: 'calm',
-      source_module: 'general',
-      insights: ['TâmTrí', 'ĐiềmTĩnh', 'TựQuanSát'],
-      created_at: '2026-09-07T10:00:00.000Z',
-      updated_at: '2026-09-07T10:00:00.000Z',
-    },
-    {
-      id: 'entry-002',
-      user_id: 'user-default',
-      title: 'Quẻ Bài Tarot Soi Chiếu Định Hướng',
-      content: 'Lá bài The Star nhắc nhở giữ vững niềm tin và kiên định với con đường đã chọn. Không nóng vội, từng bước hoàn thiện.',
-      mood_tag: 'reflective',
-      source_module: 'tarot',
-      insights: ['Tarot', 'TheStar', 'HyVọng'],
-      created_at: '2026-09-06T10:00:00.000Z',
-      updated_at: '2026-09-06T10:00:00.000Z',
-    }
-  ];
-
-  const defaultMockHistory: ConsultationHistoryItem[] = [
-    {
-      id: 'hist-001',
-      module_type: 'tarot',
-      title_vi: 'Quẻ Tarot 3 Lá',
-      summary_vi: 'The Fool (Quá khứ) - The Magician (Hiện tại) - The Star (Tương lai)',
-      timestamp: '2026-09-06T10:00:00.000Z',
-      reference_id: 'ref-001',
-    },
-    {
-      id: 'hist-002',
-      module_type: 'iching',
-      title_vi: 'Gieo Quẻ Kinh Dịch',
-      summary_vi: 'Thuần Càn (Quẻ Động Hào 2 - Kiến Long Tại Điền)',
-      timestamp: '2026-09-05T10:00:00.000Z',
-      reference_id: 'ref-002',
-    }
-  ];
-
-  const getLocalEntries = (): JournalEntry[] => {
-    if (typeof window === 'undefined') return defaultMockEntries;
-    try {
-      const stored = localStorage.getItem('ht_journal_entries');
-      if (stored) return JSON.parse(stored);
-      localStorage.setItem('ht_journal_entries', JSON.stringify(defaultMockEntries));
-      return defaultMockEntries;
-    } catch {
-      return defaultMockEntries;
-    }
-  };
-
-  const getLocalHistory = (): ConsultationHistoryItem[] => {
-    if (typeof window === 'undefined') return defaultMockHistory;
-    try {
-      const stored = localStorage.getItem('ht_consultation_history');
-      if (stored) return JSON.parse(stored);
-      localStorage.setItem('ht_consultation_history', JSON.stringify(defaultMockHistory));
-      return defaultMockHistory;
-    } catch {
-      return defaultMockHistory;
-    }
   };
 
   const fetchEntries = useCallback(

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Sparkles, Activity, Users, ShieldCheck } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 interface LiveToast {
   id: number;

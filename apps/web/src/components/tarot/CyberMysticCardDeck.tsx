@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Eye, RefreshCw, ShieldCheck, Crown, Flame, Moon, Sun } from "lucide-react";
+import { Sparkles, RefreshCw, ShieldCheck, Crown, Flame, Sun } from "lucide-react";
 
 export interface CardItem {
   id: string;
@@ -169,7 +169,7 @@ export const CyberMysticCardDeck: React.FC = () => {
                       {card.name}
                     </h4>
                     <p className="text-xs text-zinc-200 leading-relaxed line-clamp-4 font-serif italic">
-                      "{card.meaning}"
+                      &quot;{card.meaning}&quot;
                     </p>
                   </div>
 

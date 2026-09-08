@@ -68,14 +68,6 @@ const renderPillarCard = (title: string, pillar: PillarDetail, isDayMaster: bool
 export const BaTuChartView: React.FC<BaTuChartViewProps> = ({ chart }) => {
   const { five_elements_balance: fe } = chart;
 
-  const elementsList = [
-    { name: 'Mộc', pct: fe.wood_percentage, color: getElementColor('Mộc') },
-    { name: 'Hỏa', pct: fe.fire_percentage, color: getElementColor('Hỏa') },
-    { name: 'Thổ', pct: fe.earth_percentage, color: getElementColor('Thổ') },
-    { name: 'Kim', pct: fe.metal_percentage, color: getElementColor('Kim') },
-    { name: 'Thủy', pct: fe.water_percentage, color: getElementColor('Thủy') },
-  ];
-
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl backdrop-blur space-y-6">
       {/* Header */}

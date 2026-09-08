@@ -6,7 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useAuth } from '@/context/AuthContext';
 import { SystemMetricsOverview } from './SystemMetricsOverview';
 import { AuditLogViewer } from './AuditLogViewer';
-import { Crown, DollarSign, Wallet, ShieldCheck, Check, Sparkles, RefreshCw, Layers } from 'lucide-react';
+import { Crown, DollarSign, Wallet, Check, Sparkles } from 'lucide-react';
 
 export const AdminDashboardView: React.FC = () => {
   const { t } = useLanguage();
