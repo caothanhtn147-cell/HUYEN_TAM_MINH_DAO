@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
 import { StarfieldCanvas } from '@/components/common/StarfieldCanvas';
@@ -8,8 +8,19 @@ import { CustomCursor } from '@/components/common/CustomCursor';
 import { OnboardingTourModal } from '@/components/common/OnboardingTourModal';
 import { BiometricEntropyGauge } from '@/components/common/BiometricEntropyGauge';
 
+// 5 Puzzle Pieces Components
+import { AmbientSoundscapePlayer } from '@/components/audio/AmbientSoundscapePlayer';
+import { CyberMysticCardDeck } from '@/components/tarot/CyberMysticCardDeck';
+import { SocialStoryExporterModal } from '@/components/social/SocialStoryExporterModal';
+import { VietQRCheckoutModal } from '@/components/checkout/VietQRCheckoutModal';
+import { DailyWisdomPushNotifier } from '@/components/notifications/DailyWisdomPushNotifier';
+
+import { Sparkles, Share2, Crown, Bell } from 'lucide-react';
+
 export default function Home() {
   const { t, language } = useLanguage();
+  const [isStoryModalOpen, setIsStoryModalOpen] = useState(false);
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
 
   return (
     <main className="relative min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-between p-4 sm:p-8 overflow-hidden selection:bg-amber-500 selection:text-slate-950">
@@ -19,8 +30,29 @@ export default function Home() {
       {/* 30-Second New User Onboarding Tour Modal */}
       <OnboardingTourModal />
 
+      {/* 528Hz / 432Hz Ambient Soundscape Player */}
+      <AmbientSoundscapePlayer />
+
       {/* Interactive Particle Starfield Background */}
       <StarfieldCanvas />
+
+      {/* 9:16 Story Canvas Exporter Modal */}
+      <SocialStoryExporterModal
+        isOpen={isStoryModalOpen}
+        onClose={() => setIsStoryModalOpen(false)}
+        title="LỜI KHUYÊN MINH KIẾN HÔM NAY"
+        subtitle="Huyền Tâm Minh Đạo • Quẻ Ngày Mới"
+        quote="Tâm tĩnh thì trí sáng. Mọi giông bão ngoài kia chỉ là phép thử để trui rèn bản lĩnh và sự bình an nội tại."
+        authorOrType="Kinh Dịch Minh Triết"
+      />
+
+      {/* VietQR Napas247 VIP Checkout Modal */}
+      <VietQRCheckoutModal
+        isOpen={isCheckoutModalOpen}
+        onClose={() => setIsCheckoutModalOpen(false)}
+        planName="Gói VIP Minh Triết (1 Năm)"
+        amount={199000}
+      />
 
       {/* Ambient Cinema Glow Light Backgrounds */}
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-amber-500/20 via-purple-500/10 to-transparent blur-3xl opacity-80" />
@@ -57,12 +89,30 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <LanguageSwitcher />
+
+        <div className="flex items-center gap-2">
+          {/* Quick Action Trigger Buttons for Story & VIP Checkout */}
+          <button
+            onClick={() => setIsStoryModalOpen(true)}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/30 text-purple-300 text-xs font-semibold transition"
+            title="Xuất Story 9:16"
+          >
+            <Share2 className="h-3.5 w-3.5" /> Story 9:16
+          </button>
+
+          <button
+            onClick={() => setIsCheckoutModalOpen(true)}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 text-xs font-bold shadow-md shadow-amber-500/20 transition active:scale-95"
+          >
+            <Crown className="h-3.5 w-3.5" /> VIP 199K
+          </button>
+
+          <LanguageSwitcher />
+        </div>
       </header>
 
       {/* Hero Wisdom Mandala Section */}
       <section className="relative z-10 my-8 max-w-4xl text-center space-y-6">
-        {/* Animated 3D Mandala Ring */}
         <div className="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border-2 border-amber-400/40 bg-gradient-to-b from-amber-500/20 via-slate-900 to-purple-900/30 text-amber-400 text-5xl shadow-2xl cinema-glow-gold">
           <div className="absolute inset-0 rounded-full border border-amber-300/40 animate-spin-slow" />
           <span className="animate-pulse-glow inline-block">🔮</span>
@@ -90,10 +140,16 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Biometric Hardware Entropy Gauge */}
-        <div className="mx-auto max-w-2xl">
+        {/* Biometric Hardware Entropy Gauge & Morning Push Schedule */}
+        <div className="mx-auto max-w-2xl space-y-3">
           <BiometricEntropyGauge />
+          <DailyWisdomPushNotifier />
         </div>
+      </section>
+
+      {/* 3D Cyber-Mystic Tarot & Kinh Dịch Interactive Card Deck */}
+      <section className="relative z-10 w-full max-w-5xl my-6">
+        <CyberMysticCardDeck />
       </section>
 
       {/* Bento Grid Layout - 5 Trụ Cột Triết Học & Quản Trị */}
