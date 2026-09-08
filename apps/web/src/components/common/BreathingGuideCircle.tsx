@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 type Phase = 'idle' | 'inhale' | 'hold' | 'exhale';
 
@@ -9,14 +10,13 @@ export const BreathingGuideCircle: React.FC = () => {
   const [phase, setPhase] = useState<Phase>('idle');
   const [countdown, setCountdown] = useState<number>(0);
   const [cycleCount, setCycleCount] = useState<number>(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (!isActive) {
       setPhase('idle');
       return;
     }
-
-    let timer: NodeJS.Timeout;
 
     const runSequence = () => {
       // Step 1: Inhale 4s
@@ -70,13 +70,13 @@ export const BreathingGuideCircle: React.FC = () => {
   const getPhaseText = () => {
     switch (phase) {
       case 'inhale':
-        return '🌬️ Hít Vào Thật Sâu (4 giây)';
+        return t('breathingInhale');
       case 'hold':
-        return '🧘 Giữ Khí & Thư Giãn (7 giây)';
+        return t('breathingHold');
       case 'exhale':
-        return '💨 Thở Ra Chậm Rãi (8 giây)';
+        return t('breathingExhale');
       default:
-        return '🧘 Nhấn bắt đầu để thực hành thở 4-7-8';
+        return t('breathingSub');
     }
   };
 
@@ -97,10 +97,10 @@ export const BreathingGuideCircle: React.FC = () => {
     <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-center shadow-xl backdrop-blur space-y-6">
       <div className="space-y-1">
         <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-wider">
-          🌬️ Vòng Thở Sinh Học 4-7-8 (Chu Kỳ Khí Áp)
+          {t('breathingTitle')}
         </h3>
         <p className="text-xs text-slate-400">
-          Phương pháp thở chuẩn khoa học giúp hạ nhịp tim, tĩnh tâm và tái tạo năng lượng thần kinh.
+          {t('breathingSub')}
         </p>
       </div>
 
@@ -122,7 +122,7 @@ export const BreathingGuideCircle: React.FC = () => {
         </p>
         {cycleCount > 0 && (
           <span className="mt-1 text-[11px] text-slate-500">
-            Đã hoàn thành: <strong>{cycleCount}</strong> chu kỳ
+            Cycles Completed: <strong>{cycleCount}</strong>
           </span>
         )}
       </div>
@@ -140,7 +140,7 @@ export const BreathingGuideCircle: React.FC = () => {
             : 'bg-cyan-500 text-slate-950 hover:bg-cyan-400 active:scale-95'
         }`}
       >
-        {isActive ? '⏹️ Tạm Dừng Luyện Thở' : '▶️ Bắt Đầu Vòng Thở 4-7-8'}
+        {isActive ? '⏹️ Pause Breathing' : '▶️ Start 4-7-8 Breathing'}
       </button>
     </div>
   );

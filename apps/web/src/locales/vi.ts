@@ -76,7 +76,76 @@ export const vi = {
   astrologySub: 'Lập bản đồ 12 Cung Tử Vi & Ngũ Hành Âm Dương.',
   duongDaoTitle: '🌿 Dưỡng Đạo & Âm Thanh Thiền Định 432Hz',
   duongDaoSub: 'Phục hồi năng lượng tâm trí, định tâm & giấc ngủ ngon.',
+
+  // Detailed Tarot i18n
+  tarotHeaderTitle: '🔮 Rút Bài Tarot — Gương Soi Tâm Lý',
+  tarotHeaderSub: 'Triết lý Huyền Tâm: Không tiên đoán định mệnh, tự soi chiếu nhận thức',
+  tarotOneCard: '1 Lá (Hôm Nay)',
+  tarotThreeCards: '3 Lá (Quá Khứ - Hiện Tại - Hướng Tiến)',
+  tarotIntentionLabel: '💭 Ý Nguyện / Câu Hỏi Tự Soi Chiếu',
+  tarotIntentionPlaceholder: 'Nhập tâm nguyện hoặc câu hỏi bạn muốn tự chiêm nghiệm...',
+  tarotSampleLabel: '💡 Gợi ý tâm nguyện mẫu:',
+  tarotResetBtn: '🔄 Rút lại từ đầu',
+  tarotDrawBtn: '🔮 Rút Lá Bài Tarot',
+  tarotDrawingLoading: '⏳ Đang Xáo Bài & Rút Năng Lượng...',
+  tarotResultTitle: 'Kết Quả Trải Bài Tarot',
+  tarotClickToFlip: '[ Click để lật bài ]',
+  tarotPsychologicalMirror: '💡 Gương Soi Tâm Lý:',
+  tarotReflectionQuestion: '❓ Câu hỏi tự soi chiếu:',
+  tarotDisclaimerTitle: '💡 [Thông Báo Ranh Giới An Toàn]:',
+  tarotDisclaimerText: 'Các biểu tượng bài Tarot đóng vai trò làm gương soi tâm lý và gợi mở góc nhìn triết học tự quan sát. Mọi kết quả không phải là thần toán hay dự đoán định mệnh cố định.',
+
+  // Detailed IChing i18n
+  ichingHeaderTitle: '☯️ Gieo Quẻ Kinh Dịch — 3 Đồng Xu 6 Hào',
+  ichingHeaderSub: 'Triết lý Huyền Tâm Minh Đạo: Gương soi chuyển dịch tự nhiên & trí tuệ sống',
+  ichingStepMode: '🎲 Gieo Từng Hào (6 Lần)',
+  ichingInstantMode: '⚡ Gieo Nhanh Toàn Bộ',
+  ichingIntentionLabel: '💭 Ý Nguyện / Tâm Sự Cần Soi Chiếu',
+  ichingIntentionPlaceholder: 'Nhập tâm sự hoặc vấn đề bạn muốn xin góc nhìn Kinh Dịch...',
+  ichingResetBtn: '🔄 Gieo Lại Từ Đầu',
+  ichingFlipping: '🪙 Đang Xoay 3 Đồng Xu...',
+  ichingLine1Btn: '🪙 Gieo Hào 1 (Bắt Đầu)',
+  ichingLineNextBtn: '🪙 Gieo Hào kế tiếp',
+  ichingCompleteBtn: '✅ Hoàn Tất 6 Hào',
+  ichingInstantBtn: '☯️ Gieo Trọn Bộ 6 Hào',
+  ichingProgressTitle: '🪙 Tiến Trình Gieo Hào',
+  ichingProgressSub: 'Gieo từ Hào 1 (dưới) lên Hào 6 (trên)',
+  ichingPrimaryBadge: 'Quẻ Gốc (Chủ Quẻ Thực Tại)',
+  ichingTransformedBadge: 'Quẻ Biến (Xu Hướng Chuyển Dịch)',
+
+  // Detailed Astrology i18n
+  astroTabBaTu: '🏛️ Lá Số Bát Tự (Tứ Trụ & Ngũ Hành)',
+  astroTabTuVi: '🌌 Lá Số Tử Vi (12 Cung Số)',
+  astroTabSynthesis: '☯️ Phân Tích Tổng Học (Huyền Tâm)',
+  astroPillarYear: 'Trụ Năm',
+  astroPillarMonth: 'Trụ Tháng',
+  astroPillarDay: 'Trụ Ngày (Bản Thể)',
+  astroPillarHour: 'Trụ Giờ',
+  astroDayMaster: 'Nhật Chủ Bản Thể',
+  astroDominant: 'Vượng',
+  astroLacking: 'Nhược/Khuyết',
+  astroPalaceMenh: 'Mệnh',
+  astroPalaceThan: 'Thân',
+
+  // Detailed Wellness i18n
+  duongDao432Title: '🌊 Sóng Âm Tần Số 432Hz Dưỡng Đạo',
+  duongDao432Sub: 'Âm thanh sóng nền tự nhiên hỗ trợ điều hòa thần kinh, giảm stress & sâu lắng nhận thức.',
+  duongDaoBtnStart432: '▶️ Bật Sóng 432Hz Meditation',
+  duongDaoBtnStop432: '⏸️ Tắt Sóng Âm',
+  breathingTitle: '🌬️ Vòng Thở Sinh Học 4-7-8 (Chu Kỳ Khí Áp)',
+  breathingSub: 'Phương pháp thở chuẩn khoa học giúp hạ nhịp tim, tĩnh tâm và tái tạo năng lượng thần kinh.',
+  breathingInhale: '🌬️ Hít Vào Thật Sâu (4 giây)',
+  breathingHold: '🧘 Giữ Khí & Thư Giãn (7 giây)',
+  breathingExhale: '💨 Thở Ra Chậm Rãi (8 giây)',
+
+  // 5-Perspective Matrix i18n
+  matrixHeader: '👑 Ma Trận Soi Chiếu 5 Vị Thế (5-Perspective Matrix)',
+  matrixCurrentLabel: 'Vị thế hiện tại:',
+  perspectiveMass: 'Đại Chúng Phổ Thông',
+  perspectiveMystic: 'Cổ Học & Triết Lý',
+  perspectiveTech: 'Tâm Lý Học Nhận Thức',
+  perspectiveEnterprise: 'Quản Trị Enterprise',
+  perspectiveJCT: 'Vị Thế Sư Phụ JCT',
 };
 
 export type TranslationKeys = keyof typeof vi;
-

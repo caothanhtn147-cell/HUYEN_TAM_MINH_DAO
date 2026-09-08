@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { audioSynth } from '@/utils/audioSynth';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const SoundWaveVisualizer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     return () => {
-      // Cleanup audio when component unmounts
       audioSynth.stop432HzDrone();
     };
   }, []);
@@ -38,7 +39,7 @@ export const SoundWaveVisualizer: React.FC = () => {
         <div className="space-y-0.5 text-left">
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-bold text-emerald-300">
-              🌊 Sóng Âm Tần Số 432Hz Dưỡng Đạo
+              {t('duongDao432Title')}
             </h3>
             {isPlaying && (
               <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/40 animate-pulse">
@@ -47,7 +48,7 @@ export const SoundWaveVisualizer: React.FC = () => {
             )}
           </div>
           <p className="text-xs text-slate-400">
-            Âm thanh sóng nền tự nhiên hỗ trợ điều hòa thần kinh, giảm stress & sâu lắng nhận thức.
+            {t('duongDao432Sub')}
           </p>
         </div>
       </div>
@@ -63,13 +64,9 @@ export const SoundWaveVisualizer: React.FC = () => {
         }`}
       >
         {isPlaying ? (
-          <>
-            <span>⏸️ Tắt Sóng Âm</span>
-          </>
+          <span>{t('duongDaoBtnStop432')}</span>
         ) : (
-          <>
-            <span>▶️ Bật Sóng 432Hz Meditation</span>
-          </>
+          <span>{t('duongDaoBtnStart432')}</span>
         )}
       </button>
     </div>

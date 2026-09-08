@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { DrawnCardItem } from '@/types/tarot';
 import { audioSynth } from '@/utils/audioSynth';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface TarotCardViewProps {
   card: DrawnCardItem;
@@ -16,11 +17,15 @@ export const TarotCardView: React.FC<TarotCardViewProps> = ({
   autoFlip = true,
 }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(autoFlip);
+  const { t, language } = useLanguage();
 
   const toggleFlip = () => {
     audioSynth.playMysticChime();
     setIsFlipped((prev) => !prev);
   };
+
+  const cardTitle = language === 'en' ? card.name_en : card.name_vi;
+  const cardSubTitle = language === 'en' ? card.name_vi : card.name_en;
 
   return (
     <div className="flex flex-col items-center space-y-3 w-full max-w-sm">
@@ -51,11 +56,11 @@ export const TarotCardView: React.FC<TarotCardViewProps> = ({
                 HUYỀN TÂM TAROT
               </p>
               <p className="text-[11px] italic text-slate-400">
-                Lớp học gương soi tâm lý
+                {t('sloganSubtitle')}
               </p>
             </div>
             <p className="mt-6 text-[10px] uppercase tracking-wider text-slate-500 animate-pulse">
-              [ Click để lật bài ]
+              {t('tarotClickToFlip')}
             </p>
           </div>
 
@@ -85,10 +90,10 @@ export const TarotCardView: React.FC<TarotCardViewProps> = ({
                     card.is_reversed ? 'rotate-180 inline-block' : ''
                   }`}
                 >
-                  {card.name_vi}
+                  {cardTitle}
                 </h3>
                 <p className="text-[11px] font-mono text-slate-400">
-                  ({card.name_en})
+                  ({cardSubTitle})
                 </p>
               </div>
 
@@ -107,7 +112,7 @@ export const TarotCardView: React.FC<TarotCardViewProps> = ({
               {/* Psychological Mirror Meaning */}
               <div className="space-y-1 pt-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
-                  💡 Gương Soi Tâm Lý:
+                  {t('tarotPsychologicalMirror')}
                 </span>
                 <p className="text-xs leading-relaxed text-slate-200/90 italic">
                   {card.meaning_vi}
@@ -117,7 +122,7 @@ export const TarotCardView: React.FC<TarotCardViewProps> = ({
 
             {/* Wisdom Reflection Question */}
             <div className="mt-3 rounded-lg border border-amber-500/20 bg-slate-950/80 p-2.5 text-[11px] text-amber-200">
-              <span className="font-bold text-amber-400">❓ Câu hỏi tự soi chiếu: </span>
+              <span className="font-bold text-amber-400">{t('tarotReflectionQuestion')} </span>
               <span>{card.wisdom_reflection_vi}</span>
             </div>
           </div>

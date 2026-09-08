@@ -7,21 +7,31 @@ import { TarotCardView } from './TarotCardView';
 import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
 import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
+import { useLanguage } from '@/context/LanguageContext';
 
-const SAMPLE_INTENTIONS = [
+const SAMPLE_INTENTIONS_VI = [
   'Thông điệp soi chiếu tâm lý cho tôi trong ngày hôm nay.',
   'Góc nhìn giúp tôi giải tỏa áp lực và bế tắc công việc hiện tại.',
   'Bài học tâm lý tôi cần học qua trải nghiệm mối quan hệ này.',
   'Làm sao để tôi đưa ra quyết định tài chính sáng suốt?',
 ];
 
+const SAMPLE_INTENTIONS_EN = [
+  'Psychological self-reflection message for my day.',
+  'Perspective to relieve work pressure and emotional stagnation.',
+  'Mental growth lesson I should learn from this relationship.',
+  'How can I make a wise financial decision today?',
+];
+
 export const TarotSpreadView: React.FC = () => {
   const [spreadType, setSpreadType] = useState<SpreadType>('three_card');
   const [intention, setIntention] = useState<string>('');
   const [perspective, setPerspective] = useState<PerspectiveMode>('JCT_GOVERNANCE');
+  const { t, language } = useLanguage();
   const { isLoading, drawData, errorMessage, drawCards, resetDraw } =
     useTarotDraw();
 
+  const sampleIntentions = language === 'en' ? SAMPLE_INTENTIONS_EN : SAMPLE_INTENTIONS_VI;
   const cardCount = spreadType === 'single' ? 1 : 3;
 
   const handleDraw = async () => {
@@ -29,10 +39,10 @@ export const TarotSpreadView: React.FC = () => {
   };
 
   const getCardLabel = (index: number): string => {
-    if (spreadType === 'single') return 'Thông Điệp Soi Chiếu';
-    if (index === 0) return 'Quá Khứ • Nền Tảng';
-    if (index === 1) return 'Hiện Tại • Thực Tại';
-    return 'Góc Nhìn • Hướng Tiến';
+    if (spreadType === 'single') return language === 'en' ? 'Daily Message' : 'Thông Điệp Soi Chiếu';
+    if (index === 0) return language === 'en' ? 'Past • Foundation' : 'Quá Khứ • Nền Tảng';
+    if (index === 1) return language === 'en' ? 'Present • Reality' : 'Hiện Tại • Thực Tại';
+    return language === 'en' ? 'Future • Direction' : 'Góc Nhìn • Hướng Tiến';
   };
 
   return (
@@ -42,10 +52,10 @@ export const TarotSpreadView: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
           <div>
             <h2 className="text-lg font-bold text-amber-400">
-              🔮 Rút Bài Tarot — Gương Soi Tâm Lý
+              {t('tarotHeaderTitle')}
             </h2>
             <p className="text-xs text-slate-400">
-              Triết lý Huyền Tâm: Không tiên đoán định mệnh, tự soi chiếu nhận thức
+              {t('tarotHeaderSub')}
             </p>
           </div>
 
@@ -63,7 +73,7 @@ export const TarotSpreadView: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              1 Lá (Hôm Nay)
+              {t('tarotOneCard')}
             </button>
             <button
               type="button"
@@ -77,7 +87,7 @@ export const TarotSpreadView: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              3 Lá (Quá Khứ - Hiện Tại - Hướng Tiến)
+              {t('tarotThreeCards')}
             </button>
           </div>
         </div>
@@ -88,14 +98,14 @@ export const TarotSpreadView: React.FC = () => {
             htmlFor="tarot-intention"
             className="block text-xs font-bold uppercase tracking-wider text-slate-300"
           >
-            💭 Ý Nguyện / Câu Hỏi Tự Soi Chiếu
+            {t('tarotIntentionLabel')}
           </label>
           <input
             id="tarot-intention"
             type="text"
             value={intention}
             onChange={(e) => setIntention(e.target.value)}
-            placeholder="Nhập tâm nguyện hoặc câu hỏi bạn muốn tự chiêm nghiệm..."
+            placeholder={t('tarotIntentionPlaceholder')}
             disabled={isLoading}
             className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 disabled:opacity-50"
           />
@@ -104,10 +114,10 @@ export const TarotSpreadView: React.FC = () => {
         {/* Sample Intentions */}
         <div className="space-y-2">
           <span className="text-xs font-semibold text-slate-400">
-            💡 Gợi ý tâm nguyện mẫu:
+            {t('tarotSampleLabel')}
           </span>
           <div className="flex flex-wrap gap-2">
-            {SAMPLE_INTENTIONS.map((item, idx) => (
+            {sampleIntentions.map((item, idx) => (
               <button
                 key={idx}
                 type="button"
@@ -129,7 +139,7 @@ export const TarotSpreadView: React.FC = () => {
             disabled={!drawData && !isLoading}
             className="rounded-lg border border-slate-800 px-3 py-2 text-xs font-medium text-slate-400 hover:text-slate-200 disabled:opacity-30 cursor-pointer"
           >
-            🔄 Rút lại từ đầu
+            {t('tarotResetBtn')}
           </button>
 
           <button
@@ -139,9 +149,9 @@ export const TarotSpreadView: React.FC = () => {
             className="flex items-center gap-2 rounded-xl bg-amber-500 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-950 transition hover:bg-amber-400 active:scale-95 disabled:opacity-40 cursor-pointer shadow-lg shadow-amber-500/10"
           >
             {isLoading ? (
-              <span>⏳ Đang Xáo Bài & Rút Năng Lượng...</span>
+              <span>{t('tarotDrawingLoading')}</span>
             ) : (
-              <span>🔮 Rút {cardCount} Lá Bài Tarot</span>
+              <span>🔮 {t('tarotDrawBtn')} ({cardCount})</span>
             )}
           </button>
         </div>
@@ -166,7 +176,7 @@ export const TarotSpreadView: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-3">
             <div className="text-left space-y-1">
               <span className="text-xs font-mono uppercase tracking-widest text-amber-400">
-                Kết Quả Trải Bài Tarot • Session #{drawData.draw_id.slice(0, 8)}
+                {t('tarotResultTitle')} • Session #{drawData.draw_id.slice(0, 8)}
               </span>
               {drawData.intention && (
                 <p className="text-xs italic text-slate-300">
@@ -208,11 +218,10 @@ export const TarotSpreadView: React.FC = () => {
           {/* Psychological Mirror Disclaimer Footer */}
           <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4 text-center text-xs leading-relaxed text-slate-400 space-y-1">
             <p className="font-semibold text-amber-400/90">
-              💡 [Thông Báo Ranh Giới An Toàn]:
+              {t('tarotDisclaimerTitle')}
             </p>
             <p>
-              Các biểu tượng bài Tarot đóng vai trò làm gương soi tâm lý và gợi mở góc nhìn triết học tự quan sát.
-              Mọi kết quả không phải là thần toán hay dự đoán định mệnh cố định. Kết quả cuộc sống hoàn toàn nằm ở quyết định và hành động thực tế của bạn.
+              {t('tarotDisclaimerText')}
             </p>
           </div>
         </div>

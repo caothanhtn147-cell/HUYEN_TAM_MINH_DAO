@@ -9,12 +9,14 @@ import { BirthDataInput } from '@/types/astrology';
 import { SocialShareCard } from '../common/SocialShareCard';
 import { UserFeedbackModal } from '../common/UserFeedbackModal';
 import { PerspectiveMatrixSelector, PerspectiveMode } from '../common/PerspectiveMatrixSelector';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const AstrologyView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'batu' | 'tuvi' | 'synthesis'>(
     'batu'
   );
   const [perspective, setPerspective] = useState<PerspectiveMode>('JCT_GOVERNANCE');
+  const { t } = useLanguage();
 
   const {
     isLoading,
@@ -62,7 +64,7 @@ export const AstrologyView: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              🏛️ Lá Số Bát Tự (Tứ Trụ & Ngũ Hành)
+              {t('astroTabBaTu')}
             </button>
             <button
               type="button"
@@ -73,7 +75,7 @@ export const AstrologyView: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              🌌 Lá Số Tử Vi (12 Cung Số)
+              {t('astroTabTuVi')}
             </button>
             <button
               type="button"
@@ -84,7 +86,7 @@ export const AstrologyView: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              ☯️ Phân Tích Tổng Học (Huyền Tâm)
+              {t('astroTabSynthesis')}
             </button>
           </div>
 
@@ -110,7 +112,7 @@ export const AstrologyView: React.FC = () => {
               onClick={resetChart}
               className="rounded-lg border border-slate-800 px-3 py-2 text-xs font-medium text-slate-400 hover:text-slate-200 cursor-pointer"
             >
-              🔄 Lập lá số khác
+              {t('btnReset')}
             </button>
           </div>
 
