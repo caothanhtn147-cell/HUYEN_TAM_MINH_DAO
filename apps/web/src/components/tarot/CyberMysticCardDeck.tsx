@@ -12,6 +12,7 @@ export interface CardItem {
   element: string;
   artGlow: string;
   badgeColor: string;
+  imageUrl: string;
 }
 
 const SAMPLE_CARDS: CardItem[] = [
@@ -24,6 +25,7 @@ const SAMPLE_CARDS: CardItem[] = [
     element: "Khí (Air)",
     artGlow: "from-amber-400/30 via-cyan-500/20 to-purple-600/40",
     badgeColor: "text-cyan-300 border-cyan-500/30 bg-cyan-950/40",
+    imageUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: "1",
@@ -34,6 +36,7 @@ const SAMPLE_CARDS: CardItem[] = [
     element: "Hỏa (Fire)",
     artGlow: "from-amber-400/40 via-red-500/30 to-purple-900/50",
     badgeColor: "text-amber-300 border-amber-500/40 bg-amber-950/40",
+    imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: "2",
@@ -44,6 +47,7 @@ const SAMPLE_CARDS: CardItem[] = [
     element: "Thủy (Water)",
     artGlow: "from-indigo-400/30 via-purple-600/30 to-zinc-950",
     badgeColor: "text-purple-300 border-purple-500/30 bg-purple-950/40",
+    imageUrl: "https://images.unsplash.com/photo-1514539079130-25950c84af65?q=80&w=600&auto=format&fit=crop",
   },
 ];
 
@@ -151,6 +155,13 @@ export const CyberMysticCardDeck: React.FC = () => {
 
                 {/* CARD FRONT (Mặt Trước 8K Cyber-Mystic Art) */}
                 <div className={`absolute inset-0 h-full w-full rounded-2xl bg-gradient-to-br ${card.artGlow} p-6 border-2 border-amber-400/70 flex flex-col justify-between rotate-y-180 backface-hidden shadow-2xl shadow-amber-500/40 overflow-hidden`}>
+                  {/* Real Photographic Mystic Artwork Layer */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={card.imageUrl}
+                    alt={card.name}
+                    className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay scale-105 group-hover:scale-110 transition-transform duration-700 pointer-events-none"
+                  />
                   {/* Dual-Layer Cinema Glow Light Background */}
                   <div className="absolute top-0 right-0 w-40 h-40 bg-amber-400/20 blur-2xl rounded-full pointer-events-none" />
                   

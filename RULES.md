@@ -41,6 +41,10 @@
   - 🧹 **Zero ESLint Warnings/Errors**: Đã dọn sạch 100% 23 linter errors & warnings (Unused imports, unescaped JSX quotes, missing hook dependencies).
   - ⚡ **Hooks Purity Refactoring**: Chuyển các hằng số & hàm trợ lý `getLocalEntries`, `defaultMockMetrics` ra ngoài custom hooks (`useJournal.ts`, `useAdminMetrics.ts`).
 
+- **`HT-036`**: Smart Auto-Destruct Click Ripple & 8K High-Definition Photographic Art Upgrade:
+  - 🎯 **Smart Click Ripple & Zero-Blink Cursor**: Khắc phục dứt điểm lỗi nháy lặp vô hạn. Vòng tròn click chuột tự động hủy sạch sau 450ms (`CustomCursor.tsx` + `globals.css` `@keyframes ping-once`), gỡ bỏ hoàn toàn `animate-pulse` gây nhấp nháy liên tục.
+  - 🖼️ **Real High-Res Photographic Artwork Upgrade**: Thay thế toàn bộ icon hoạt họa bằng **Ảnh Nghệ Thuật Nhiếp Ảnh Huyền Thuật 8K** thật trên 5 Thẻ Bento Grid Trụ Cột (`app/page.tsx`) và Bộ Bài 3D Tarot (`CyberMysticCardDeck.tsx`).
+
 ## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
 - Backend `ruff check`: 0 errors.

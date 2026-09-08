@@ -40,8 +40,14 @@ export const CustomCursor: React.FC = () => {
     };
 
     const handleClick = (e: MouseEvent) => {
-      const newRipple: Ripple = { id: Date.now(), x: e.clientX, y: e.clientY };
-      setRipples((prev) => [...prev.slice(-4), newRipple]);
+      const id = Date.now() + Math.random();
+      const newRipple: Ripple = { id, x: e.clientX, y: e.clientY };
+      setRipples((prev) => [...prev.slice(-2), newRipple]);
+
+      // Smart Auto-Cleanup: remove ripple after 450ms animation finishes
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== id));
+      }, 450);
     };
 
     const handleMouseLeave = () => {
@@ -69,35 +75,34 @@ export const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Click Visual Ripple Effects */}
+      {/* Smart Temporary Click Ripple (Auto-destructs after 450ms) */}
       {ripples.map((r) => (
         <div
           key={r.id}
-          className="pointer-events-none fixed z-50 rounded-full border-2 border-amber-400/80 bg-purple-500/20 animate-ping opacity-75 shadow-lg shadow-amber-500/40"
+          className="pointer-events-none fixed z-50 rounded-full border border-amber-400/60 bg-amber-400/10 transition-all duration-500 ease-out shadow-lg shadow-amber-500/30 scale-150 opacity-0 animate-ping-once"
           style={{
             left: r.x - 20,
             top: r.y - 20,
             width: 40,
             height: 40,
-            animationDuration: '600ms',
           }}
         />
       ))}
 
-      {/* Outer Glowing Magnetic Aura Circle */}
+      {/* Outer Glowing Magnetic Aura Circle (Smooth Cursor) */}
       <div
         className={`pointer-events-none fixed z-50 rounded-full border transition-transform duration-150 ease-out ${
           isHovered
-            ? 'h-12 w-12 border-amber-400 bg-amber-500/20 shadow-xl shadow-amber-500/40 scale-125'
-            : 'h-8 w-8 border-amber-500/40 bg-amber-500/10'
+            ? 'h-10 w-10 border-amber-400 bg-amber-500/20 shadow-xl shadow-amber-500/40 scale-125'
+            : 'h-7 w-7 border-amber-500/40 bg-amber-500/10'
         }`}
         style={{
-          transform: `translate3d(${pos.x - (isHovered ? 24 : 16)}px, ${pos.y - (isHovered ? 24 : 16)}px, 0)`,
+          transform: `translate3d(${pos.x - (isHovered ? 20 : 14)}px, ${pos.y - (isHovered ? 20 : 14)}px, 0)`,
         }}
       />
-      {/* Inner Pinpoint Specular Core */}
+      {/* Inner Pinpoint Specular Core (No annoying blinking) */}
       <div
-        className="pointer-events-none fixed z-50 h-2 w-2 rounded-full bg-amber-300 shadow-md shadow-amber-300 animate-pulse"
+        className="pointer-events-none fixed z-50 h-2 w-2 rounded-full bg-amber-300 shadow-md shadow-amber-300"
         style={{
           transform: `translate3d(${pos.x - 4}px, ${pos.y - 4}px, 0)`,
         }}

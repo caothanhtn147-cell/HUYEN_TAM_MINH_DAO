@@ -166,12 +166,20 @@ export default function Home() {
         {/* Card 1: Minh Kiện AI Chat */}
         <a
           href="/minh-kien"
-          className="group relative flex flex-col justify-between rounded-3xl border border-amber-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:bg-slate-900/90 cinema-glow-gold shadow-2xl"
+          className="group relative flex flex-col justify-between rounded-3xl border border-amber-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:bg-slate-900/90 cinema-glow-gold shadow-2xl overflow-hidden"
         >
-          <div className="space-y-3">
+          {/* Real Photo Artwork Background Layer */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+            alt="Minh Kiện AI"
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay group-hover:scale-110 transition-transform duration-700 pointer-events-none"
+          />
+
+          <div className="space-y-3 relative z-10">
             <div className="flex items-center justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 text-2xl group-hover:scale-110 transition shadow-inner">
-                🤖
+                🔮
               </div>
               <span className="rounded-full bg-amber-500/10 px-2.5 py-0.5 text-[10px] font-bold text-amber-300 border border-amber-500/30">
                 LIVE AI STREAM
@@ -180,13 +188,13 @@ export default function Home() {
             <h3 className="text-xl font-bold text-slate-100 group-hover:text-amber-400 transition">
               {t('navMinhKien')}
             </h3>
-            <p className="text-xs leading-relaxed text-slate-300">
+            <p className="text-xs leading-relaxed text-slate-300 font-medium">
               {language === 'en'
                 ? 'AI psychological reflection assistant answering life questions through applied philosophy.'
                 : 'Trợ lý AI soi chiếu nhận thức tâm lý, giải đáp triết học và khai sáng góc nhìn đời sống.'}
             </p>
           </div>
-          <div className="mt-6 flex items-center justify-between text-xs font-bold text-amber-400 border-t border-slate-800/80 pt-3">
+          <div className="mt-6 flex items-center justify-between text-xs font-bold text-amber-400 border-t border-slate-800/80 pt-3 relative z-10">
             <span>{t('minhKienTitle')}</span>
             <span className="group-hover:translate-x-1 transition">→</span>
           </div>
@@ -195,9 +203,17 @@ export default function Home() {
         {/* Card 2: Rút Bài Tarot 3D */}
         <a
           href="/tarot"
-          className="group relative flex flex-col justify-between rounded-3xl border border-purple-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-purple-400 hover:bg-slate-900/90 cinema-glow-purple shadow-2xl"
+          className="group relative flex flex-col justify-between rounded-3xl border border-purple-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-purple-400 hover:bg-slate-900/90 cinema-glow-purple shadow-2xl overflow-hidden"
         >
-          <div className="space-y-3">
+          {/* Real Photo Artwork Background Layer */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800&auto=format&fit=crop"
+            alt="Tarot 3D Art"
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay group-hover:scale-110 transition-transform duration-700 pointer-events-none"
+          />
+
+          <div className="space-y-3 relative z-10">
             <div className="flex items-center justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-400 text-2xl group-hover:scale-110 transition shadow-inner">
                 🎴
@@ -209,13 +225,13 @@ export default function Home() {
             <h3 className="text-xl font-bold text-slate-100 group-hover:text-purple-400 transition">
               {t('navTarot')}
             </h3>
-            <p className="text-xs leading-relaxed text-slate-300">
+            <p className="text-xs leading-relaxed text-slate-300 font-medium">
               {language === 'en'
                 ? 'Sacred 78-card Tarot deck with 3D flip physics, time spread & psychological mirror.'
                 : 'Thánh trận 78 lá bài Tarot hiệu ứng 3D lật bài sinh động, luận giải 3 quẻ Thời Gian & Tâm Trí.'}
             </p>
           </div>
-          <div className="mt-6 flex items-center justify-between text-xs font-bold text-purple-400 border-t border-slate-800/80 pt-3">
+          <div className="mt-6 flex items-center justify-between text-xs font-bold text-purple-400 border-t border-slate-800/80 pt-3 relative z-10">
             <span>{t('tarotTitle')}</span>
             <span className="group-hover:translate-x-1 transition">→</span>
           </div>
@@ -224,9 +240,17 @@ export default function Home() {
         {/* Card 3: Gieo Quẻ Kinh Dịch */}
         <a
           href="/iching"
-          className="group relative flex flex-col justify-between rounded-3xl border border-emerald-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-emerald-400 hover:bg-slate-900/90 cinema-glow-emerald shadow-2xl"
+          className="group relative flex flex-col justify-between rounded-3xl border border-emerald-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-emerald-400 hover:bg-slate-900/90 cinema-glow-emerald shadow-2xl overflow-hidden"
         >
-          <div className="space-y-3">
+          {/* Real Photo Artwork Background Layer */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1514539079130-25950c84af65?q=80&w=800&auto=format&fit=crop"
+            alt="Kinh Dịch I Ching"
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay group-hover:scale-110 transition-transform duration-700 pointer-events-none"
+          />
+
+          <div className="space-y-3 relative z-10">
             <div className="flex items-center justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-2xl group-hover:scale-110 transition shadow-inner">
                 ☯
@@ -238,13 +262,13 @@ export default function Home() {
             <h3 className="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition">
               {t('navIChing')}
             </h3>
-            <p className="text-xs leading-relaxed text-slate-300">
+            <p className="text-xs leading-relaxed text-slate-300 font-medium">
               {language === 'en'
                 ? '3D ancient bronze coin flip simulation, 64 hexagrams & changing line direction.'
                 : 'Mô phỏng gieo 3 đồng xu Thái Cực 3D, luận giải 64 Quẻ Thần Toán & Hào Động định hướng.'}
             </p>
           </div>
-          <div className="mt-6 flex items-center justify-between text-xs font-bold text-emerald-400 border-t border-slate-800/80 pt-3">
+          <div className="mt-6 flex items-center justify-between text-xs font-bold text-emerald-400 border-t border-slate-800/80 pt-3 relative z-10">
             <span>{t('ichingTitle')}</span>
             <span className="group-hover:translate-x-1 transition">→</span>
           </div>
@@ -253,9 +277,17 @@ export default function Home() {
         {/* Card 4: Lá Số Bát Tự & Tử Vi */}
         <a
           href="/astrology"
-          className="group relative flex flex-col justify-between rounded-3xl border border-cyan-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-400 hover:bg-slate-900/90 cinema-glow-cyan shadow-2xl"
+          className="group relative flex flex-col justify-between rounded-3xl border border-cyan-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-400 hover:bg-slate-900/90 cinema-glow-cyan shadow-2xl overflow-hidden"
         >
-          <div className="space-y-3">
+          {/* Real Photo Artwork Background Layer */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=800&auto=format&fit=crop"
+            alt="Bát Tự Tử Vi"
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay group-hover:scale-110 transition-transform duration-700 pointer-events-none"
+          />
+
+          <div className="space-y-3 relative z-10">
             <div className="flex items-center justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-2xl group-hover:scale-110 transition shadow-inner">
                 🏛️
@@ -267,13 +299,13 @@ export default function Home() {
             <h3 className="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition">
               {t('navAstrology')}
             </h3>
-            <p className="text-xs leading-relaxed text-slate-300">
+            <p className="text-xs leading-relaxed text-slate-300 font-medium">
               {language === 'en'
                 ? '12-Palace Tu Vi Star Wheel, Four Pillars Bazi & Five Elements Pentagon balance.'
                 : 'Lập bản đồ 12 Cung Tử Vi, phân tích Âm Dương Ngũ Hành & Cận chi tiết mệnh số.'}
             </p>
           </div>
-          <div className="mt-6 flex items-center justify-between text-xs font-bold text-cyan-400 border-t border-slate-800/80 pt-3">
+          <div className="mt-6 flex items-center justify-between text-xs font-bold text-cyan-400 border-t border-slate-800/80 pt-3 relative z-10">
             <span>{t('astrologyTitle')}</span>
             <span className="group-hover:translate-x-1 transition">→</span>
           </div>
@@ -282,9 +314,17 @@ export default function Home() {
         {/* Card 5: Dưỡng Đạo & Giấc Ngủ */}
         <a
           href="/duong-dao"
-          className="group relative flex flex-col justify-between rounded-3xl border border-emerald-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-emerald-400 hover:bg-slate-900/90 cinema-glow-emerald shadow-2xl"
+          className="group relative flex flex-col justify-between rounded-3xl border border-emerald-500/30 bg-slate-900/70 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-emerald-400 hover:bg-slate-900/90 cinema-glow-emerald shadow-2xl overflow-hidden"
         >
-          <div className="space-y-3">
+          {/* Real Photo Artwork Background Layer */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop"
+            alt="Đường Đạo Dưỡng Sinh"
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay group-hover:scale-110 transition-transform duration-700 pointer-events-none"
+          />
+
+          <div className="space-y-3 relative z-10">
             <div className="flex items-center justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-2xl group-hover:scale-110 transition shadow-inner">
                 🌿
@@ -296,13 +336,13 @@ export default function Home() {
             <h3 className="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition">
               {t('navDuongDao')}
             </h3>
-            <p className="text-xs leading-relaxed text-slate-300">
+            <p className="text-xs leading-relaxed text-slate-300 font-medium">
               {language === 'en'
                 ? '432Hz harmonic meditation wave, 4-7-8 bio-breathing circle & sleep rhythm guide.'
                 : 'Nhật ký theo dõi năng lượng tâm trí (Mind Mood Matrix) & âm thanh thiền định 432Hz.'}
             </p>
           </div>
-          <div className="mt-6 flex items-center justify-between text-xs font-bold text-emerald-400 border-t border-slate-800/80 pt-3">
+          <div className="mt-6 flex items-center justify-between text-xs font-bold text-emerald-400 border-t border-slate-800/80 pt-3 relative z-10">
             <span>{t('duongDaoTitle')}</span>
             <span className="group-hover:translate-x-1 transition">→</span>
           </div>
