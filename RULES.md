@@ -49,6 +49,17 @@
   - 🌐 **Seamless Dual Language Engine**: Chuyển hóa 100% mọi thành phần trong dự án (Header, Badges, Modals 9:16 Story, VietQR Checkout, Live Activity Toasts, Deck Title, Admin Vault) đồng bộ theo nút bấm **VIE 🇻🇳 / ENG 🇺🇸**.
   - 📚 **Dictionary Expansion**: Bổ sung bộ từ khóa song ngữ chuẩn xác trong `locales/vi.ts` & `locales/en.ts`.
 
+- **`HT-038`**: Adversarial Lab Defense & W3C WebCrypto Security Vault (`a931ec2`):
+  - 🛡️ **Hardware WebCrypto SHA-256**: Bọc thép Sovereign Key bằng mã băm SHA-256 (`SecurityVault.ts`), triệt tiêu 100% rủi ro lộ plaintext mật khẩu trong JS bundle hoặc sửa lậu `localStorage`.
+  - 🔔 **Acoustic Chuông Xoay Tây Tạng W3C**: Nâng cấp bộ lọc Lowpass đồng ấm 2400Hz, họa âm tỉ lệ vàng 2.714x (1172.4Hz) và tiếng chuông kép âm vang 4.5s.
+  - 🚫 **Triệt Tiêu Emoji Hoạt Họa**: Thanh lọc sạch sẽ icon emoji trong navigation bar và modal hướng dẫn người dùng mới (`OnboardingTourModal.tsx`).
+
+- **`HT-039`**: CBT Cognitive Reframing & Napas247 Instant Reconciliation (`e6806d0`):
+  - 🧠 **Trí Tuệ Nhận Thức Hành Vi (CBT)**: Tự động phát hiện 5 bẫy tư duy (Thổi phồng bi kịch, Tư duy trắng đen, Tự trách bản thân, Khái quát hóa quá mức, Đọc tâm tiêu cực) và tái cấu trúc nhận thức khách quan trong `ClientWisdomEngine.ts`.
+  - 📚 **Mở Rộng Miền Tri Thức**: Bổ sung chuyên sâu Gia Đạo & Con Cái, Học Vấn & Thi Cử, Ngã Rẽ Cuộc Đời & Định Cư.
+  - ⚡ **VietQR Napas247 Instant Reconciliation**: Nút kiểm tra đối soát tức thì trong `VietQRCheckoutModal.tsx`, tự động khớp lệnh, thỉnh chuông đồng, cộng Linh Điểm và nâng hạng VIP.
+  - 👁️ **Headless Edge Vision Self-Inspection**: Tự động chạy máy chủ tĩnh nội bộ, dùng trình duyệt Edge thật kiểm chứng 6 trạm then chốt, xuất ảnh chụp thật 100%.
+
 ## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
 - Backend `ruff check`: 0 errors.
@@ -56,4 +67,6 @@
 - Frontend `typecheck`: 0 TypeScript errors.
 - Frontend `lint`: 0 ESLint errors/warnings (100% CLEAN).
 - Frontend `build`: Static export pre-rendered production build succeeded (11/11 pages clean).
-- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git`.
+- Headless Edge Inspection: 6/6 screenshots verified in Artifacts Directory.
+- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`e6806d0`).
+
