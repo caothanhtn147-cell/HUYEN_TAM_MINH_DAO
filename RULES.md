@@ -7,6 +7,12 @@
 - **`HT-022`**: Dưỡng Đạo Health, Habit & Sleep Hygiene Educational System (`7ea4513`).
 - **`HT-023`**: Dashboard Consultation History & Self-Reflection Journal System (`f5be611`).
 - **`HT-024`**: Admin Governance & System Health Audit Metrics Dashboard (`ed5687e`).
+- **`HT-025`**: World-Class Big-Tech & Mystical Grade Visual Upgrade (`1af0f6d`):
+  - 👑 **5-Perspective Matrix Selector**: Toggle between Mass Public, Mysticism Scholars, Tech Lab, Big Tech Enterprise, & JCT Governance perspectives.
+  - 🌊 **Web Audio API 432Hz Sound Synthesizer**: Built-in 432Hz harmonic drone audio generator & sound effect chime for Tarot/Kinh Dịch flips.
+  - 🪙 **3D Ancient Coin Toss Animation**: Real-time 3D tumbling bronze coins for Kinh Dịch 6-line generation.
+  - 🌬️ **4-7-8 Bio-Breathing Guide**: Dynamic animated breathing guide circle for stress-relief & mental calibration.
+  - ☯️ **Five Elements Radar Pentagon**: Interactive Kim - Mộc - Thủy - Hỏa - Thổ energy balance pentagon chart.
 
 ## 🚀 Official Commercial Domain & Cloudflare Protection (SEALED)
 - **Official Domain**: `https://huyentam.app`
@@ -23,4 +29,5 @@
 - Backend `pytest`: All unit tests passed 100%.
 - Frontend `typecheck`: 0 TypeScript errors.
 - Frontend `lint`: 0 ESLint errors/warnings.
-- Frontend `build`: Pre-rendered production build succeeded with static pages `/`, `/admin`, `/astrology`, `/dashboard`, `/duong-dao`, `/iching`, `/minh-kien`, `/tarot`.
+- Frontend `build`: Static export pre-rendered production build succeeded (11/11 pages clean).
+- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`1af0f6d`).
