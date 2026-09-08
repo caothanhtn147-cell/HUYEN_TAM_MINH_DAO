@@ -16,47 +16,72 @@ export const StarfieldCanvas: React.FC = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+
     const handleResize = () => {
       if (!canvas) return;
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
 
-    window.addEventListener('resize', handleResize);
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
 
-    // Create 120 star particles with different speeds and depths
-    const stars = Array.from({ length: 120 }).map(() => ({
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // 150 Pearl Fluid particles with gradient colors & magnetic gravity
+    const particles = Array.from({ length: 150 }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.8 + 0.3,
-      speedX: (Math.random() - 0.5) * 0.2,
-      speedY: (Math.random() - 0.5) * 0.2,
-      alpha: Math.random() * 0.7 + 0.3,
-      pulseSpeed: Math.random() * 0.02 + 0.005,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 2.2 + 0.5,
+      color: Math.random() > 0.5 ? '245, 158, 11' : '168, 85, 247', // Amber or Purple
+      alpha: Math.random() * 0.6 + 0.2,
+      pulse: Math.random() * 0.03 + 0.005,
     }));
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Render starfield
-      stars.forEach((star) => {
-        star.x += star.speedX;
-        star.y += star.speedY;
+      particles.forEach((p) => {
+        // Gravitational attraction toward mouse
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 220) {
+          const force = (220 - dist) / 220;
+          p.vx += (dx / dist) * force * 0.05;
+          p.vy += (dy / dist) * force * 0.05;
+        }
 
-        // Wrap edges
-        if (star.x < 0) star.x = width;
-        if (star.x > width) star.x = 0;
-        if (star.y < 0) star.y = height;
-        if (star.y > height) star.y = 0;
+        // Apply friction
+        p.vx *= 0.98;
+        p.vy *= 0.98;
 
-        // Pulse alpha
-        star.alpha += Math.sin(Date.now() * star.pulseSpeed) * 0.005;
-        const clampedAlpha = Math.max(0.1, Math.min(0.9, star.alpha));
+        p.x += p.vx;
+        p.y += p.vy;
 
-        ctx.fillStyle = `rgba(245, 158, 11, ${clampedAlpha * 0.5})`;
+        // Wrap canvas edges
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        // Draw Pearl Fluid Particle with radial glow
+        ctx.save();
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        const radGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
+        radGrad.addColorStop(0, `rgba(${p.color}, ${p.alpha})`);
+        radGrad.addColorStop(1, `rgba(${p.color}, 0)`);
+        ctx.fillStyle = radGrad;
+        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
       });
 
       animationFrameId = requestAnimationFrame(render);
@@ -66,6 +91,7 @@ export const StarfieldCanvas: React.FC = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -73,7 +99,7 @@ export const StarfieldCanvas: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-60"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70"
     />
   );
 };

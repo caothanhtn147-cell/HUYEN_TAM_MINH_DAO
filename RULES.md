@@ -26,6 +26,13 @@
 - **`STEP-3`**: Production Cloud Configs (`0e34a2c`) — `apps/web/vercel.json` and root `docker-compose.prod.yml` ready for zero-downtime cloud launch.
 - **`STEP-4`**: VietQR Auto Payment Endpoint (`0e34a2c`) — `POST /api/v1/payments/vietqr` dynamic bank transfer QR generator for credit top-up.
 
+- **`HT-029`**: 5 World-Class Puzzle Pieces Integrated (`cbcb13d`):
+  - 🎴 **3D Cyber-Mystic Card Deck**: Bộ bài 3D Tarot & Kinh Dịch lật 3D lấp lánh 120 FPS (`CyberMysticCardDeck.tsx`).
+  - 🎶 **528Hz Solfeggio Ambient Player**: Trình phát nhạc tần số chữa lành 528Hz/432Hz Web Audio API (`AmbientSoundscapePlayer.tsx`).
+  - 📱 **9:16 Social Story Exporter**: Xuất ảnh Story TikTok/Zalo 9:16 sắc nét kèm QR code (`SocialStoryExporterModal.tsx`).
+  - 💳 **VietQR Napas247 VIP Checkout**: Modal thanh toán VietQR tự động kích hoạt gói VIP 3s (`VietQRCheckoutModal.tsx`).
+  - 🔔 **Morning Wisdom Push Notifier**: Nhắc nhở quẻ ngày mới & lời chúc bình an 6h00 sáng (`DailyWisdomPushNotifier.tsx`).
+
 ## 🧪 Final Verification & Build Status
 - Backend `mypy app`: 0 issues across 70 source files.
 - Backend `ruff check`: 0 errors.
@@ -33,4 +40,4 @@
 - Frontend `typecheck`: 0 TypeScript errors.
 - Frontend `lint`: 0 ESLint errors/warnings.
 - Frontend `build`: Static export pre-rendered production build succeeded (11/11 pages clean).
-- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`1af0f6d`).
+- GitHub Repo Sync: Synced to `https://github.com/caothanhtn147-cell/HUYEN_TAM_MINH_DAO.git` (`cbcb13d`).
