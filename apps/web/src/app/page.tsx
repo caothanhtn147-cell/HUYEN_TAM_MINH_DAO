@@ -24,7 +24,7 @@ export default function Home() {
         <p className="text-sm font-medium text-slate-400">
           International Name: {t('brandNameEn')}
         </p>
-        <p className="text-base italic text-amber-200/90 font-serif">
+        <p className="text-base italic text-amber-200/90 font-medium tracking-wide">
           {t('slogan')}
         </p>
         <div className="border-t border-slate-800 pt-6 text-xs leading-relaxed text-slate-400 space-y-4">
