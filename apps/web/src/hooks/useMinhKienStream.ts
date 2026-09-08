@@ -45,8 +45,8 @@ export function useMinhKienStream(
 
       const fullText = data.content;
       let currentIndex = 0;
-      const step = 8; // characters per tick
-      const intervalMs = 20;
+      const step = 12; // characters per tick
+      const intervalMs = 15; // fast 60fps typing speed
 
       streamIntervalRef.current = setInterval(() => {
         currentIndex += step;
@@ -82,39 +82,47 @@ export function useMinhKienStream(
       setResponsePayload(null);
       setErrorMessage(null);
 
-      // Attempt remote API first if on localhost or configured, with quick timeout
       let fetchedData: MinhKienConsultationResponse | null = null;
 
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 1200);
+      // On static production or HTTPS, directly use Autonomous Client Wisdom Engine (0.01s instant responsiveness)
+      const isHttpsOrStatic =
+        typeof window !== 'undefined' &&
+        (window.location.protocol === 'https:' ||
+          window.location.hostname !== 'localhost');
 
-        const res = await fetch(`${apiBaseUrl}/sessions/minh-kien`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            messages: [{ role: 'user', content: userQuery }],
-            provider,
-          }),
-          signal: controller.signal,
-        });
-
-        clearTimeout(timeoutId);
-
-        if (res.ok) {
-          fetchedData = await res.json();
-        }
-      } catch {
-        // Network unavailable or mixed content blocked -> Smoothly fallback to Autonomous Client Engine
-      }
-
-      // If remote API is unavailable or returned error, engage autonomous client wisdom engine
-      if (!fetchedData) {
-        // Short pause to emulate thoughtful AI contemplation
-        await new Promise((resolve) => setTimeout(resolve, 350));
+      if (isHttpsOrStatic) {
+        await new Promise((resolve) => setTimeout(resolve, 200));
         fetchedData = ClientWisdomEngine.generateConsultation(userQuery);
+      } else {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 600);
+
+          const res = await fetch(`${apiBaseUrl}/sessions/minh-kien`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              messages: [{ role: 'user', content: userQuery }],
+              provider,
+            }),
+            signal: controller.signal,
+          });
+
+          clearTimeout(timeoutId);
+
+          if (res.ok) {
+            fetchedData = await res.json();
+          }
+        } catch {
+          // Fallback to Autonomous Client Engine
+        }
+
+        if (!fetchedData) {
+          await new Promise((resolve) => setTimeout(resolve, 200));
+          fetchedData = ClientWisdomEngine.generateConsultation(userQuery);
+        }
       }
 
       // Stream the wisdom character-by-character

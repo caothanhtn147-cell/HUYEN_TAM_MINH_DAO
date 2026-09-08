@@ -9,20 +9,20 @@ export const en: typeof vi = {
   footerDisclaimer: 'All spiritual and wellness reflections are guided by self-observation philosophy & complete transparency.',
 
   // Navigation
-  navMinhKien: '🔮 Minh Kiến AI Stream',
-  navTarot: '🃏 Tarot Card Reading',
-  navIChing: '☯️ I Ching Coin Toss',
-  navAstrology: '🏛️ Bazi & Tu Vi Astrology',
-  navDuongDao: '🌿 Wellness & Sleep Rhythm',
-  navDashboard: '📊 Dashboard & Journal',
-  navAdmin: '🛡️ Admin Governance',
+  navMinhKien: 'Minh Kien Sanctuary',
+  navTarot: 'Tarot Card Matrix',
+  navIChing: 'I Ching Hexagram Terrace',
+  navAstrology: 'Celestial Astrology & Bazi',
+  navDuongDao: 'Restorative Zen Chamber',
+  navDashboard: 'Personal Journal & Log',
+  navAdmin: 'Sovereign Governance Vault',
 
   // Common UI Actions
   btnDraw: 'Draw Cards',
   btnToss: 'Toss Coins',
   btnCalculate: 'Calculate Chart',
-  btnShareStory: '📸 Export Story Card (9:16)',
-  btnReset: '🔄 Reset & Try Again',
+  btnShareStory: 'Export Story Card (9:16)',
+  btnReset: 'Reset & Try Again',
   btnSaveJournal: '💾 Save Reflection Journal',
 
   // Language Switcher Label

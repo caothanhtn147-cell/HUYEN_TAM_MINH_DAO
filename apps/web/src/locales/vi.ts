@@ -7,21 +7,21 @@ export const vi = {
   footerDisclaimer: 'Tất cả nội dung tư vấn tâm linh và lối sống được định hướng bằng triết học tự quan sát & minh bạch rõ ràng.',
 
   // Navigation
-  navMinhKien: '🔮 Minh Kiến Chat AI',
-  navTarot: '🃏 Rút Bài Tarot',
-  navIChing: '☯️ Gieo Quẻ Kinh Dịch',
-  navAstrology: '🏛️ Lá Số Bát Tự & Tử Vi',
-  navDuongDao: '🌿 Dưỡng Đạo & Giấc Ngủ',
-  navDashboard: '📊 Dashboard & Nhật Ký',
-  navAdmin: '🛡️ Admin Governance',
+  navMinhKien: 'Minh Kiến Điện',
+  navTarot: 'Huyền Bài Trận (Tarot)',
+  navIChing: 'Dịch Kinh Đài (Kinh Dịch)',
+  navAstrology: 'Tinh Tú Cung (Tử Vi & Bát Tự)',
+  navDuongDao: 'Dưỡng Đạo Viện',
+  navDashboard: 'Nhật Ký Cá Nhân',
+  navAdmin: 'Mật Viện Sovereign',
 
   // Common UI Actions
   btnDraw: 'Rút Bài',
   btnToss: 'Gieo Quẻ',
   btnCalculate: 'Lập Lá Số',
-  btnShareStory: '📸 Tải Ảnh Story (9:16)',
-  btnReset: '🔄 Rút lại từ đầu',
-  btnSaveJournal: '💾 Lưu Nhật Ký',
+  btnShareStory: 'Tải Ảnh Story (9:16)',
+  btnReset: 'Rút lại từ đầu',
+  btnSaveJournal: 'Lưu Nhật Ký',
 
   // Language Switcher Label
   langSwitchVi: '🇻🇳 VIE',
